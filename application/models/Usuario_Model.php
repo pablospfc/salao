@@ -31,5 +31,20 @@ class Usuario_Model extends CI_Model
         $result = $this->db->query("SELECT * FROM {$this->table} WHERE id = ".$id);
         return $result;
     }
+    
+    function getList() {
+        $result = $this->db->query("SELECT 
+                                           tb_usuario.id as id,
+                                           tb_usuario.nome as nome,
+                                           tb_usuario.email as email,
+                                           tb_usuario.login as login,
+                                           tb_usuario.id_perfil as id_perfil,
+                                           tb_perfil.nome as perfil
+                                    FROM {$this->table}
+                                    INNER JOIN tb_perfil ON tb_perfil.id = tb_usuario.id_perfil
+                                    "
+                                    );
+        return $result->result();
+    }
 
 }

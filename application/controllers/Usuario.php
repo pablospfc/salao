@@ -12,7 +12,7 @@ class Usuario extends MY_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->library('form_validation');
-        $this->load->model('Usuario_Model', 'empresa', TRUE);
+        $this->load->model('Usuario_Model', 'usuario', TRUE);
         $this->load->model('Perfil_Model', 'perfil', TRUE);
     }
 
@@ -20,6 +20,8 @@ class Usuario extends MY_Controller
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
         $this->load->view('usuario/index');
+        $data['list_usuarios'] = $this->usuario->getList();
+        $this->load->view('usuario/list',$data);
     }
 
     public function add() {
@@ -37,11 +39,11 @@ class Usuario extends MY_Controller
             foreach($perfis as $arr){
                 $data['list_perfis'][$arr->id] = $arr->nome;
             }
-            $this->load->view('empresa/add',$data);
+            $this->load->view('usuario/add',$data);
         }else{
             $this->adding();
             $this->session->set_flashdata('insert-ok','Cadastrado com sucesso!');
-            redirect('/empresa');
+            redirect('/usuario');
         }
     }
 
@@ -52,23 +54,19 @@ class Usuario extends MY_Controller
         $data['email'] =  $this->input->post('email');
         $data['login'] =  $this->input->post('login');
         $data['senha'] =  $this->input->post('senha');
-        $this->empresa->adding($data);
+        $this->usuario->adding($data);
     }
 
     public function view($id) {
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
-        $result = $this->empresa->getById($id);
+        $result = $this->usuario->getById($id);
         if($result == FALSE){
-            redirect('/empresa', 'refresh');
+            redirect('/usuario', 'refresh');
         }
-        $estados = $this->estado->getEstados();
-        foreach($estados as $arr){
-            $data['list_estados'][$arr->id] = $arr->nome;
-        }
-        $cidades = $this->cidade->getCidadesByUF($result->row(0)->id_estado);
-        foreach($cidades as $arr){
-            $data['list_cidades'][$arr->id] = $arr->nome;
+        $perfis = $this->perfil->getAll();
+        foreach($perfis as $arr){
+            $data['list_perfis'][$arr->id] = $arr->nome;
         }
 
         $data['id'] = $result->row(0)->id;
