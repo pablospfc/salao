@@ -39,12 +39,20 @@ class Usuario_Model extends CI_Model
                                            tb_usuario.email as email,
                                            tb_usuario.login as login,
                                            tb_usuario.id_perfil as id_perfil,
-                                           tb_perfil.nome as perfil
+                                           tb_perfil.nome as perfil,
+                                           if (tb_usuario.ativo = 1, 'Ativo', 'Inativo' ) AS situacao,
+                                           DATE_FORMAT(tb_usuario.data_cadastro,'%d/%m/%Y %H:%m:%s') as data_cadastro
                                     FROM {$this->table}
                                     INNER JOIN tb_perfil ON tb_perfil.id = tb_usuario.id_perfil
                                     "
                                     );
         return $result->result();
+    }
+
+    function del($id){
+        $this->db->where('md5(id)', md5($id));
+        $this->db->delete($this->table);
+        return (bool) $this->db->affected_rows();
     }
 
 }

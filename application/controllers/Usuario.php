@@ -19,7 +19,6 @@ class Usuario extends MY_Controller
     public function index() {
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
-        $this->load->view('usuario/index');
         $data['list_usuarios'] = $this->usuario->getList();
         $this->load->view('usuario/list',$data);
     }
@@ -49,11 +48,12 @@ class Usuario extends MY_Controller
 
     public function adding() {
         $data['nome'] = $this->input->post('nome');
-        $data['id_empresa'] = $this->session->get_userdata('id_empresa');
+        $data['id_empresa'] = $this->session->userdata('id_empresa');
         $data['id_perfil'] =  $this->input->post('id_perfil');
         $data['email'] =  $this->input->post('email');
         $data['login'] =  $this->input->post('login');
         $data['senha'] =  $this->input->post('senha');
+        $data['deve_mudar'] = ($this->input->post('deve_mudar') == 1) ? 1 : 0;
         $this->usuario->adding($data);
     }
 
@@ -70,19 +70,11 @@ class Usuario extends MY_Controller
         }
 
         $data['id'] = $result->row(0)->id;
-        $data['nome_fantasia'] = $result->row(0)->nome_fantasia;
-        $data['razao_social'] = $result->row(0)->razao_social;
-        $data['id_cidade'] = $result->row(0)->id_cidade;
-        $data['id_estado'] = $result->row(0)->id_estado;
-        $data['telefone'] = $result->row(0)->telefone;
+        $data['nome'] = $result->row(0)->nome;
+        $data['id_perfil'] = $result->row(0)->id_perfil;
         $data['email'] = $result->row(0)->email;
-        $data['cep'] = $result->row(0)->cep;
-        $data['logradouro'] = $result->row(0)->logradouro;
-        $data['bairro'] = $result->row(0)->bairro;
-        $data['cnpj'] = $result->row(0)->cnpj;
-        $data['site'] = $result->row(0)->site;
 
-        $this->load->view('empresa/view', $data);
+        $this->load->view('usuario/view', $data);
     }
 
     public function changing() {
@@ -92,24 +84,26 @@ class Usuario extends MY_Controller
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
 
         if($this->form_validation->run()){
-            $data['nome_fantasia'] = $this->input->post('nome_fantasia');
-            $data['razao_social'] = $this->input->post('razao_social');
-            $data['id_cidade'] = $this->input->post('id_cidade');
-            $data['telefone'] =  $this->input->post('telefone');
+            $data['nome'] = $this->input->post('nome');
+            $data['id_perfil'] =  $this->input->post('id_perfil');
             $data['email'] =  $this->input->post('email');
-            $data['cep'] =  $this->input->post('cep');
-            $data['logradouro'] =  $this->input->post('logradouro');
-            $data['bairro'] =  $this->input->post('bairro');
-            $data['site'] =  $this->input->post('site');
-            $data['cnpj'] =  $this->input->post('cnpj');
 
-            if($this->empresa->changing($id, $data)){
+            if($this->usuario->changing($id, $data)){
                 $this->session->set_flashdata('update-ok','Alterado com sucesso!');
-                redirect('/empresa/view/'.$id);
+                redirect('/usuario/view/'.$id);
             }
         }else{
             $this->view($id);
         }
+    }
+
+    function del($id){
+        if($this->usuario->del($id)){
+            $this->session->set_flashdata('delete-ok','Excluido com sucesso!');
+            redirect('/cliente');
+        }
+
+
     }
 
 
