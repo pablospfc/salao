@@ -53,7 +53,7 @@ class Usuario extends MY_Controller
         $data['email'] =  $this->input->post('email');
         $data['login'] =  $this->input->post('login');
         $data['senha'] =  $this->input->post('senha');
-        $data['deve_mudar'] = ($this->input->post('deve_mudar') == 1) ? 1 : 0;
+        //$data['deve_mudar'] = ($this->input->post('deve_mudar') == 1) ? 1 : 0;
         $this->usuario->adding($data);
     }
 
@@ -73,6 +73,8 @@ class Usuario extends MY_Controller
         $data['nome'] = $result->row(0)->nome;
         $data['id_perfil'] = $result->row(0)->id_perfil;
         $data['email'] = $result->row(0)->email;
+        $data['login'] = $result->row(0)->login;
+        $data['ativo'] = $result->row(0)->ativo;
 
         $this->load->view('usuario/view', $data);
     }
@@ -80,13 +82,19 @@ class Usuario extends MY_Controller
     public function changing() {
         $id = (int) $this->input->post('id');
         $this->form_validation->set_error_delimiters('<div class="alert alert-error fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
-        $this->form_validation->set_rules('nome_fantasia', 'nome_fantasia', 'required|max_length[50]');
+        $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
 
         if($this->form_validation->run()){
             $data['nome'] = $this->input->post('nome');
             $data['id_perfil'] =  $this->input->post('id_perfil');
             $data['email'] =  $this->input->post('email');
+            $data['ativo'] = ($this->input->post('ativo') == 1) ? 1 : 0;
+
+            if ($this->input->post('senha') != null)
+                $data['senha'] = md5($this->input->post('senha'));
+
+
 
             if($this->usuario->changing($id, $data)){
                 $this->session->set_flashdata('update-ok','Alterado com sucesso!');

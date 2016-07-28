@@ -42,7 +42,8 @@ class LoginService extends CI_Controller
                     'perfil'       => $row->perfil,
                     'login'        => $row->login,
                     'id_empresa'   => $row->id_empresa,
-                    'empresa'      => $row->empresa
+                    'empresa'      => $row->empresa,
+                    'deve_mudar'   => $row->deve_mudar,
                 );
                 $this->session->set_userdata($sess_array);
             }
@@ -52,6 +53,10 @@ class LoginService extends CI_Controller
             $this->form_validation->set_message('check_dados', 'Dados informados inválidos. Tente novamente!');
             return false;
         }
+    }
+
+    function changing_password() {
+
     }
 
 }
