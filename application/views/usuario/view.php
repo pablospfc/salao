@@ -10,6 +10,12 @@
         <li><a href="#">Usuários</a></li>
     </ul>
 
+    <?php 
+    if( $this->session->flashdata('update-ok')!="" ){
+        echo '<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>'.$this->session->flashdata('update-ok').'</strong></div>';
+    }
+    ?>
+
     <div class="row-fluid sortable">
         <div class="box span12">
             <div class="box-header" data-original-title>
@@ -19,7 +25,9 @@
                 <?php echo validation_errors();?>
                 <?php
                 $attributes = array('class' => 'form-horizontal');
-                echo form_open('usuario/add',$attributes); ?>
+                echo form_open('usuario/changing',$attributes); ?>
+                <input type="hidden" name="id" id="id" value="<?php echo $id?>" />
+                <input type="hidden" name="id" id="id" value="<?php echo $id?>" />
                 <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="focusedInput">Nome:</label>
@@ -36,7 +44,7 @@
                                 <?php
 
                                 foreach($list_perfis as $perfil_id => $perfil_nome){
-                                    $selected = ($id_tipo_servico == $tipo_servico_id) ? 'selected':'';
+                                    $selected = ($id_perfil == $perfil_id) ? 'selected':'';
                                     echo '<option value="'.$perfil_id.'"'.$selected.'>'.$perfil_nome.'</option>';
                                 }
 
@@ -56,31 +64,33 @@
                     <div class="control-group">
                         <label class="control-label" for="focusedInput">Login:</label>
                         <div class="controls">
-                            <input class="form-control" id="login" type="text" name="login" required value="<?=( isset($login) ) ? $login : "";?>" readonly>
+                            <input class="form-control" id="login" type="text" name="login" value="<?=( isset($login) ) ? $login : "";?>" readonly >
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="focusedInput">Senha:</label>
                         <div class="controls">
-                            <input class="form-control" id="senha" type="password" name="senha" required>
+                            <input class="form-control" id="senha" type="password" name="senha">
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="focusedInput">Confirma Senha:</label>
                         <div class="controls">
-                            <input class="form-control" id="confirma_senha" type="password" name="confirma_senha" required >
+                            <input class="form-control" id="confirma_senha" type="password" name="confirma_senha" >
                         </div>
                     </div>
-                    <?php if ($this->session->userdata('id_perfil')==1) ?>
+
+                    <?php if ($this->session->userdata('id_perfil')==1) { ?>
                     <div class="control-group">
                         <label class="control-label" for="focusedInput"></label>
                         <label class="checkbox">
-                            <input type="checkbox" name="ativo" id="ativo" <?php if($ativo == 1){ echo 'checked';}?>>
+                            <input type="checkbox" name="ativo" id="ativo" value="1" <?php if($ativo == 1){ echo 'checked';}?>>
                             Ativo
                         </label>
                     </div>
+                    <?php }?>
 
                 </fieldset>
 
@@ -115,6 +125,7 @@
 
 </footer>
 <script>
+
     var password = document.getElementById("senha")
         , confirm_password = document.getElementById("confirma_senha");
 
@@ -128,6 +139,7 @@
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
+
 </script>
 </body>
 </html>

@@ -40,6 +40,7 @@ class LoginService extends CI_Controller
                     'id'           => $row->id,
                     'nome'         => $row->nome,
                     'perfil'       => $row->perfil,
+                    'id_perfil'    => $row->id_perfil,
                     'login'        => $row->login,
                     'id_empresa'   => $row->id_empresa,
                     'empresa'      => $row->empresa,

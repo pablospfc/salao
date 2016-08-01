@@ -73,14 +73,6 @@
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput"></label>
-                        <label class="checkbox">
-                            <input type="checkbox" name="deve_mudar" id="deve_mudar" value="1" checked>
-                            Deve mudar senha
-                        </label>
-                    </div>
-
                 </fieldset>
 
                 <div class="form-actions">
