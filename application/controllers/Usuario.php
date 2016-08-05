@@ -86,6 +86,7 @@ class Usuario extends MY_Controller
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
         $this->form_validation->set_rules('senha', 'senha',  'trim|min_length[6]|md5',array('min_length' => 'O campo %s deve ter pelo menos 6 caracteres.'));
 
+        
 
         if($this->form_validation->run()){
             $data['nome'] = $this->input->post('nome');
@@ -99,10 +100,14 @@ class Usuario extends MY_Controller
             if ($this->session->userdata('id_perfil')==1)
             $data['ativo'] = ($this->input->post('ativo') == 1) ? 1 : 0;
 
-            if($this->usuario->changing($id, $data)){
+            $sucesso = $this->usuario->changing($id, $data);
+             error_log(var_export($sucesso,true),0);
+            if($sucesso){
                 $this->session->set_flashdata('update-ok','Alterado com sucesso!');
                 redirect('/usuario/view/'.$id);
             }
+            else
+                redirect('/usuario/view/'.$id);
         }else{
             $this->view($id);
         }

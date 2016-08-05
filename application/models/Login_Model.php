@@ -23,11 +23,12 @@ class Login_Model extends CI_Model
                                            tb_usuario.id_perfil as id_perfil,
                                            tb_perfil.nome as perfil,
                                            tb_empresa.nome_fantasia as empresa,
-                                           tb_usuario.id_empresa as id_empresa
+                                           tb_usuario.id_empresa as id_empresa,
+                                           tb_usuario.ativo as ativo
                                      FROM {$this->table}
                                      INNER JOIN tb_perfil ON tb_perfil.id = tb_usuario.id_perfil
                                      INNER JOIN tb_empresa ON tb_empresa.id  = tb_usuario.id_empresa
-                                     WHERE tb_usuario.login = '{$login}' AND tb_usuario.senha = '{$senha}' AND tb_usuario.ativo = 1
+                                     WHERE tb_usuario.login = '{$login}' AND tb_usuario.senha = '{$senha}'
                                      ");
         return $result->result();
 
