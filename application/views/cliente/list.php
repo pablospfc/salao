@@ -26,11 +26,15 @@
             <div class="box-header" data-original-title>
                 <h2><i class="halflings-icon user"></i><span class="break"></span>Clientes</h2>
                 <div class="box-icon">
-                    <a href="<?php echo site_url('cliente/add'); ?>" class="btn btn-primary btn-sm"> <i
-                            class="fa-icon-file"></i>Novo
-                    </a>
+
                 </div>
+            </div><br>
+            <div style="padding-left:900px;">
+            <a href="<?php echo site_url('cliente/add'); ?>" class="btn btn-primary btn-sm"> <i
+                    class="fa-icon-file"></i>Novo
+            </a>
             </div>
+
             <div class="box-content">
                 <table class="table table-striped table-bordered bootstrap-datatable datatable">
                     <thead>

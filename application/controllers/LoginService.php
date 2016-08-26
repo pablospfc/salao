@@ -54,17 +54,12 @@ class LoginService extends CI_Controller
                 }
                 $this->session->set_userdata($sess_array);
             }
-            //error_log(var_export($sess_array,true),0);
+
             return true;
         } else {
             $this->form_validation->set_message('check_dados', 'Dados informados inválidos. Tente novamente!');
             return false;
         }
-    }
-
-    function changing_password()
-    {
-
     }
 
 }
