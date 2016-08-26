@@ -47,6 +47,7 @@ class LoginService extends CI_Controller
                     'login' => $row->login,
                     'id_empresa' => $row->id_empresa,
                     'empresa' => $row->empresa,
+                    'logged'  => true
                 );
                 if ($row->ativo == 0) {
                     $this->form_validation->set_message('check_dados', 'O seu usuário não está ativo. Entre em contato com o administrador do sistema.');

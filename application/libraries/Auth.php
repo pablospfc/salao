@@ -20,7 +20,7 @@ class Auth
      * Pesquisa a classe e o método passados como parâmetro em CheckAuth
      */
     $array = array('classe' => $classe, 'metodo' => $metodo);
-    $qryMetodos = $this->CI->db->where($array)->get('metodos');
+    $qryMetodos = $this->CI->db->where($array)->get('tb_metodos');
     $resultMetodos = $qryMetodos->result();
 
     /*
@@ -31,10 +31,10 @@ class Auth
       $data = array(
         'classe' => $classe ,
         'metodo' => $metodo ,
-        'apelido' => $classe .  '/' . $metodo,
+        'identificacao' => $classe .  '/' . $metodo,
         'privado' => 1
       );
-      $this->CI->db->insert('metodos', $data);
+      $this->CI->db->insert('tb_metodos', $data);
       redirect(base_url($classe . '/' . $metodo), 'refresh');
     }
     else{
@@ -49,9 +49,7 @@ class Auth
       else{
         $nome = $this->CI->session->userdata('nome');
         $logged_in = $this->CI->session->userdata('logged');
-        $data = $this->CI->session->userdata('data');
-        $email = $this->CI->session->userdata('email');
-        $id_usuario =  $this->CI->session->userdata('id_usuario');
+        $id_perfil =  $this->CI->session->userdata('id_perfil');
 
         $id_metodo = $resultMetodos[0]->id;
 
@@ -59,10 +57,10 @@ class Auth
          * Se o usuário estiver logado faz a verificação da permissão
          * caso contrário redireciona para uma tela de login
          */
-        if($nome && $logged_in && $id_usuario){
+        if($nome && $logged_in && $id_perfil){
 
-          $array = array('id_metodo' => $id_metodo, 'id_usuario' => $id_usuario);
-          $qryPermissoes = $this->CI->db->$this->CI->db->where($array)->get('permissoes');
+          $array = array('id_metodo' => $id_metodo, 'id_perfil' => $id_perfil);
+          $qryPermissoes = $this->CI->db->where($array)->get('tb_permissoes');
           $resultPermissoes = $qryPermissoes->result();
 
           /*
