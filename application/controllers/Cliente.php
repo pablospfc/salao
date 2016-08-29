@@ -22,7 +22,7 @@ class Cliente extends MY_Controller
     }
 
      function index(){
-        $this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+        //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
         $data = array();
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
@@ -32,7 +32,7 @@ class Cliente extends MY_Controller
     }
 
      function add() {
-         $this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+        //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
 
@@ -69,7 +69,7 @@ class Cliente extends MY_Controller
     }
 
     function view($id) {
-        $this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+        //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
         $result = $this->cliente->getById($id);

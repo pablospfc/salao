@@ -71,7 +71,7 @@ class Auth
            * caso contrário o acesso é liberado
            */
           if(count($resultPermissoes)==0){
-            redirect($this->permissaoView, 'refresh');
+            return false;
           }
           else{
             return true;

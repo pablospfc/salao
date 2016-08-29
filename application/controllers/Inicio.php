@@ -17,7 +17,7 @@ class Inicio extends CI_Controller
 
     Public function index()
     {
-       $this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+       //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
 
             if ($this->session->userdata('id')) {
                 $this->load->view('layout/header');
