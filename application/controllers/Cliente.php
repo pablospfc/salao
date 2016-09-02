@@ -13,7 +13,6 @@ class Cliente extends MY_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->library('form_validation');
-        $this->load->library('auth');
 
         $this->load->model('Cliente_Model', 'cliente', TRUE);
         $this->load->model('Cidade_Model', 'cidade', TRUE);

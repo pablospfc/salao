@@ -12,7 +12,6 @@ class Profissional extends MY_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->library('form_validation');
-        $this->load->library('auth');
 
         $this->load->model('Profissional_Model', 'profissional', TRUE);
         $this->load->model('Cidade_Model', 'cidade', TRUE);

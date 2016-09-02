@@ -43,8 +43,9 @@ class Auth
        * O método sendo público (0), então não verifica o login e libera o acesso
        * Mas se for privado (1) então é verificado o login e a permissão do usuário
        */
+
       if($resultMetodos[0]->privado==0){
-        return false;
+        return true;
       }
       else{
         $nome = $this->CI->session->userdata('nome');
