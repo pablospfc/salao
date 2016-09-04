@@ -36,7 +36,7 @@
                             <select required="required" name="id_tipo_operacao" id="id_tipo_operacao" class="form-control" onchange="alteraDiv()">
                                 <option value="" selected></option>
                                 <?php
-
+                                //lista
                                 foreach($list_tipos_operacoes as $tipos_operacao_id => $tipo_operacao){
                                     echo '<option value="'.$tipos_operacao_id.'">'.$tipo_operacao.'</option>';
                                 }
