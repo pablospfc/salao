@@ -3,19 +3,10 @@
 /**
  * Created by PhpStorm.
  * User: claud
- * Date: 13/08/2016
- * Time: 12:15
+ * Date: 04/09/2016
+ * Time: 14:23
  */
-class Estoque_Model extends CI_Model
+class Estoque_Model
 {
-    private $table = "tb_empresa";
 
-    function __construct(){
-        parent::__construct();
-    }
-
-    public function adding($data){
-        $result = $this->db->insert($this->table, $data);
-        return $result;
-    }
 }
