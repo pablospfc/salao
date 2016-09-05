@@ -13,7 +13,6 @@ class Cliente extends MY_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->library('form_validation');
-        $this->load->library('auth');
 
         $this->load->model('Cliente_Model', 'cliente', TRUE);
         $this->load->model('Cidade_Model', 'cidade', TRUE);
@@ -22,7 +21,6 @@ class Cliente extends MY_Controller
     }
 
      function index(){
-        //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
         $data = array();
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
@@ -32,7 +30,6 @@ class Cliente extends MY_Controller
     }
 
      function add() {
-        //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
 

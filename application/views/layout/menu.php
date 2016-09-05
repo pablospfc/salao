@@ -11,7 +11,7 @@
 						<li><a href="<?php echo site_url('cartao'); ?>"><i class="icon-credit-card"></i><span class="hidden-tablet"> Cartões</span></a></li>
 						<li><a href="<?php echo site_url('agenda'); ?>"><i class="icon-calendar"></i><span class="hidden-tablet"> Agenda</span></a></li>
 						<li><a href="<?php echo site_url('venda'); ?>"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Vendas</span></a></li>
-						<li><a href="<?php echo site_url('estoque'); ?>"><i class="icon-cargo"></i><span class="hidden-tablet"> Estoque</span></a></li>
+						<li><a href="<?php echo site_url('movimentacao'); ?>"><i class="icon-cargo"></i><span class="hidden-tablet"> Estoque</span></a></li>
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Contas</span><span class="label label-important"> 2 </span></a>
 							<ul>
