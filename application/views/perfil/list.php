@@ -53,6 +53,9 @@
                                 <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $perfil->id ?>" data-nome="<?= $perfil->nome ?>">
                                     <i class="halflings-icon white trash"></i>
                                 </a>
+                                <a class="btn btn-primary" href="<?php echo base_url('permissao/add/'.$perfil->id)?>">
+                                   Permissões
+                                </a>
                             </td>
 
                         </tr>

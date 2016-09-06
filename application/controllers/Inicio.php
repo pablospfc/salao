@@ -12,13 +12,10 @@ class Inicio extends CI_Controller
 
         parent::__construct();
         $this->load->library('session');
-        $this->load->library('auth');
     }
 
     Public function index()
     {
-       //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
-
             if ($this->session->userdata('id')) {
                 $this->load->view('layout/header');
                 $this->load->view('layout/menu');

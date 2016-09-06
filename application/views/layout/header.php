@@ -16,6 +16,7 @@
 
     <!-- start: CSS -->
     <link id="bootstrap-style" href="<?php echo base_url('includes/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url();?>includes/css/checkbox.css" rel="stylesheet" />
     <link href="<?php echo base_url('includes/css/bootstrap-responsive.min.css'); ?>" rel="stylesheet">
     <link id="base-style" href="<?php echo base_url('includes/css/style.css'); ?>" rel="stylesheet">
     <link id="base-style-responsive" href="<?php echo base_url('includes/css/style-responsive.css'); ?>" rel="stylesheet">
@@ -27,6 +28,7 @@
 
     <link href="<?php echo base_url();?>includes/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>includes/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+
 
 
     <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
