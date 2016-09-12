@@ -12,7 +12,6 @@ class Permissao extends MY_Controller
         parent::__construct();
         $this->load->library('session');
         $this->load->library('form_validation');
-
         $this->load->model('Permissao_Model', 'permissao', TRUE);
     }
 
@@ -21,8 +20,7 @@ class Permissao extends MY_Controller
         $data = array();
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
-        $data['list_permissoes'] = $this->permissao->getAll();
-        $this->load->view('permissao/list', $data);
+
     }
 
     function add() {
@@ -32,8 +30,12 @@ class Permissao extends MY_Controller
         $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
 
         if( $this->form_validation->run()==FALSE ){
-
-            $this->load->view('permissao/add');
+            
+            $permissoes = $this->permissao->getAll();
+            
+                $data['list_permissoes'] = $permissoes ;
+            
+            $this->load->view('permissao/add',$data);
         }else{
             $this->adding();
             $this->session->set_flashdata('insert-ok','Cadastrado com sucesso!');

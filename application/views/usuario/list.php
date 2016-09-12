@@ -59,9 +59,6 @@
                                 <?php echo $usuario->data_cadastro;?>
                             </td>
                             <td class="center">
-                                <a class="btn btn-success" href="javascript:;" onclick="janelaDetalhamentoCliente(<?= $usuario->id ?>)">
-                                    <i class="halflings-icon white zoom-in"></i>
-                                </a>
                                 <a class="btn btn-info" href="<?php echo base_url('usuario/view/'.$usuario->id)?>">
                                     <i class="halflings-icon white edit"></i>
                                 </a>
@@ -97,73 +94,6 @@
     </p>
 
 </footer>
-
-<div class="modal fade" id="modal_detalhamento" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Detalhamento do Usuário</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped table-bordered bootstrap-datatable" id="detalhe">
-                    <tr>
-                        <td><strong>Nome:</strong></td>
-                        <td><label id="nome"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Data de Nascimento:</strong></td>
-                        <td><label id="data_nascimento"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Telefone:</strong></td>
-                        <td><label id="telefone"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Celular:</strong></td>
-                        <td><label id="celular"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Email:</strong></td>
-                        <td><label id="email"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>CEP:</strong></td>
-                        <td><label id="cep"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Endereco:</strong></td>
-                        <td><label id="endereco"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Número:</strong></td>
-                        <td><label id="numero"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Complemento:</strong></td>
-                        <td><label id="complemento"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Bairro:</strong></td>
-                        <td><label id="bairro"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Cidade:</strong></td>
-                        <td><label id="cidade"></label></td>
-                    </tr>
-                    <tr>
-                        <td><strong>UF:</strong></td>
-                        <td><label id="uf"></label></td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <div class="modal fade" id="modal_confirmation">
     <div class="modal-dialog">
@@ -209,35 +139,7 @@
             document.location.href = base_url + "usuario/del/"+id;
         });
     });
-
-    function carregaDadosClienteJSon(id_cliente){
-
-        $.post(base_url+'cliente/getInfoCliente', {
-            id_cliente: id_cliente
-        }, function (data){
-            console.log(data);
-            $('#nome').text(data.nome);
-            $('#data_nascimento').text(data.data_nascimento);
-            $('#telefone').text(data.telefone);
-            $('#celular').text(data.celular);
-            $('#email').text(data.email);
-            $('#cep').text(data.cep);
-            $('#endereco').text(data.endereco);
-            $('#numero').text(data.numero);
-            $('#complemento').text(data.complemento);
-            $('#bairro').text(data.bairro);
-            $('#cidade').text(data.cidade);
-            $('#uf').text(data.uf);
-
-        }, 'json');
-    }
-
-    function janelaDetalhamentoCliente(id_cliente){
-
-        //antes de abrir a janela, preciso carregar os dados do cliente e preencher os campos dentro do modal
-        carregaDadosClienteJSon(id_cliente);
-        $('#modal_detalhamento').modal('show');
-    }
+    
 </script>
 </body>
 </html>

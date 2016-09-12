@@ -7,70 +7,29 @@
             <a href="#">Home</a>
             <i class="icon-angle-right"></i>
         </li>
-        <li><a href="#">Perfis</a></li>
+        <li><a href="#">Permissões</a></li>
     </ul>
 
     <div class="row-fluid sortable">
         <div class="box span12">
             <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Cadastro de Perfis</h2>
+                <h2><i class="halflings-icon user"></i><span class="break"></span>Atribuir Permissões</h2>
             </div>
             <div class="box-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
-                            <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <h2 class="panel-heading" style="text-align:center;">Switch Demos</h2>
+             <?php
 
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        Bootstrap Switch Default
-                                        <div class="TriSea-technologies-Switch pull-right">
-                                            <input id="TriSeaDefault" name="TriSea1" type="checkbox"/>
-                                            <label for="TriSeaDefault" class="label-default"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Bootstrap Switch Primary
-                                        <div class="TriSea-technologies-Switch pull-right">
-                                            <input id="TriSeaPrimary" name="TriSea1" type="checkbox"/>
-                                            <label for="TriSeaPrimary" class="label-primary"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Bootstrap Switch Success
-                                        <div class="TriSea-technologies-Switch pull-right">
-                                            <input id="TriSeaSuccess" name="TriSea1" type="checkbox"/>
-                                            <label for="TriSeaSuccess" class="label-success"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Bootstrap Switch Info
-                                        <div class="TriSea-technologies-Switch pull-right">
-                                            <input id="TriSeaInfo" name="TriSea1" type="checkbox"/>
-                                            <label for="TriSeaInfo" class="label-info"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Bootstrap Switch Warning
-                                        <div class="TriSea-technologies-Switch pull-right">
-                                            <input id="TriSeaWarning" name="TriSea1" type="checkbox"/>
-                                            <label for="TriSeaWarning" class="label-warning"></label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Bootstrap Switch Danger
-                                        <div class="TriSea-technologies-Switch pull-right">
-                                            <input id="TriSeaDanger" name="TriSea1" type="checkbox"/>
-                                            <label for="TriSeaDanger" class="label-danger"></label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             //error_log(var_export($list_permissoes[0]['metodos'][0]['metodo'], true), 3,'C:/xampp/htdocs/salao/log.log');
+
+              foreach ($list_permissoes as $key => $modulos) {
+                  echo $modulos['modulo']."</br>";
+//                  foreach ($modulos as $modulo) {
+//
+//                  }
+              }
+
+
+
+             ?>
 
 
             </div>
