@@ -24,7 +24,8 @@ class Permissao_Model extends CI_Model
     tb_modulos.id AS id_modulo,
     tb_modulos.nome AS modulo,
     tb_metodos.id AS id_metodo,
-    tb_metodos.nome AS metodo
+    tb_metodos.nome AS metodo,
+    (SELECT IF (id_metodo is null,'0','1') as metodo_id FROM tb_permissoes WHERE id_metodo = tb_metodos.id) as checked
 FROM
     tb_metodos
         INNER JOIN
@@ -41,7 +42,7 @@ FROM
 
         foreach ($data as $value) {
 
-            $metodoTemp = [ 'id' => $value[ 'id_metodo' ], 'metodo' => $value[ 'metodo' ] ];
+            $metodoTemp = [ 'id' => $value[ 'id_metodo' ], 'metodo' => $value[ 'metodo' ], 'checked' => $value["checked"] ];
 
             if (isset($modulos[$value['modulo']]))
                 array_push( $modulos[ $value[ 'modulo' ] ][ 'metodos' ], $metodoTemp );

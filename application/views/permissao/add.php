@@ -17,20 +17,27 @@
             </div>
             <div class="box-content">
              <?php
-
-             //error_log(var_export($list_permissoes[0]['metodos'][0]['metodo'], true), 3,'C:/xampp/htdocs/salao/log.log');
+                echo validation_errors();
+                $attributes = array('class' => 'form-horizontal');
+                echo form_open('permissao/add',$attributes);
 
               foreach ($list_permissoes as $key => $modulos) {
                   echo $modulos['modulo']."</br>";
-//                  foreach ($modulos as $modulo) {
-//
-//                  }
+                 foreach ($modulos['metodos'] as $metodo) {
+                     echo $metodo['metodo'];
+                     $checked = ($metodo['checked'] ==1) ? "checked" : "";
+                     echo '<input type="checkbox" name="ativo" value="1" '.$checked."></br>";
+                     echo '<input type="hidden" name="id_metodo" value="'.$metodo['id_metodo'].'"';
+                  }
+                  echo "</br>";
               }
 
-
-
              ?>
-
+                <div class="form-actions">
+                    <?php echo form_button(array('class' => 'btn btn-primary', 'type' => 'submit', 'content' => 'Salvar')); ?>
+                    <?php echo form_button(array('class' => 'btn dark-blue', 'type' => 'button', 'content' => 'Voltar', 'onclick' => 'window.open(\''.base_url().'perfil\', \'_self\')')); ?>
+                    <?php echo form_close(); ?>
+                </div>
 
             </div>
 
