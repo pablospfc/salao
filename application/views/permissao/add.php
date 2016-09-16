@@ -21,13 +21,13 @@
                 $attributes = array('class' => 'form-horizontal');
                 echo form_open('permissao/add',$attributes);
 
-              foreach ($list_permissoes as $key => $modulos) {
+              foreach ($list_permissoes as $modulos) {
                   echo $modulos['modulo']."</br>";
                  foreach ($modulos['metodos'] as $metodo) {
                      echo $metodo['metodo'];
                      $checked = ($metodo['checked'] ==1) ? "checked" : "";
                      echo '<input type="checkbox" name="ativo" value="1" '.$checked."></br>";
-                     echo '<input type="hidden" name="id_metodo" value="'.$metodo['id_metodo'].'"';
+                     echo '<input type="hidden" name="id_metodo" value="'.$metodo['id'].'"';
                   }
                   echo "</br>";
               }

@@ -36,7 +36,7 @@ FROM
     }
 
     public function trataDados($data) {
-        //error_log(var_export($data, true), 3,'C:/xampp/htdocs/salao/log.log');
+        error_log(var_export($data, true));
         $modulos  = [];
         $metodoTemp = null;
 
@@ -57,7 +57,9 @@ FROM
         foreach ($modulos as $key => &$modulo)
             $modulo['modulo'] = $key;
 
-        //error_log(var_export(array_values($modulos), true), 3,'C:/xampp/htdocs/salao/log.log');
+        error_log(var_export(array_values($modulos), true), 3,'/var/www/html/salao/log.log');
+
+        //error_log(var_export(array_values($modulos),true));
 
         return array_values($modulos);
 
