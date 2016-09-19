@@ -16,144 +16,49 @@ class Permissao extends MY_Controller
     }
 
     function index(){
-        //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
-        $data = array();
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
-
     }
 
-    function add() {
+    function add($id) {
+
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
 
-        $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
-
-        if( $this->form_validation->run()==FALSE ){
-            
-            $permissoes = $this->permissao->getAll();
-            
-                $data['list_permissoes'] = $permissoes ;
+            $permissoes = $this->permissao->getAll($id);
+            $data['idPerfil'] = $id;
+            $data['list_permissoes'] = $permissoes ;
+        //error_log(var_export($data, true), 3,'C:/xampp/htdocs/salao/log.log');
             
             $this->load->view('permissao/add',$data);
-        }else{
-            $this->adding();
-            $this->session->set_flashdata('insert-ok','Cadastrado com sucesso!');
-            redirect('/permissao');
-        }
+
     }
 
     function adding() {
-        $data['nome'] = $this->input->post('nome');
-        $data['id_cidade'] = $this->input->post('id_cidade');
-        $data['telefone'] =  $this->input->post('telefone');
-        $data['data_nascimento'] =  $this->input->post('data_nascimento');
-        $data['celular'] =  $this->input->post('celular');
-        $data['email'] =  $this->input->post('email');
-        $data['cep'] =  $this->input->post('cep');
-        $data['endereco'] =  $this->input->post('endereco');
-        $data['numero'] =  $this->input->post('numero');
-        $data['complemento'] =  $this->input->post('complemento');
-        $data['bairro'] =  $this->input->post('bairro');
-        $this->profissional->adding($data);
-    }
 
-    function view($id) {
-        $this->load->view('layout/header');
-        $this->load->view('layout/menu');
-        $result = $this->profissional->getById($id);
-        if($result == FALSE){
-            redirect('/profissional', 'refresh');
-        }
-        $estados = $this->estado->getEstados();
-        foreach($estados as $arr){
-            $data['list_estados'][$arr->id] = $arr->nome;
-        }
-        $cidades = $this->cidade->getCidadesByUF($result->row(0)->id_estado);
-        foreach($cidades as $arr){
-            $data['list_cidades'][$arr->id] = $arr->nome;
-        }
+        $idPerfil = $this->input->post('id_perfil');
 
-        $data['id'] = $result->row(0)->id;
-        $data['nome'] = $result->row(0)->nome;
-        $data['data_nascimento'] =  $result->row(0)->data_nascimento;
-        $data['id_cidade'] = $result->row(0)->id_cidade;
-        $data['id_estado'] = $result->row(0)->id_estado;
-        $data['telefone'] = $result->row(0)->telefone;
-        $data['celular'] = $result->row(0)->celular;
-        $data['email'] = $result->row(0)->email;
-        $data['cep'] = $result->row(0)->cep;
-        $data['endereco'] = $result->row(0)->endereco;
-        $data['numero'] = $result->row(0)->numero;
-        $data['complemento'] = $result->row(0)->complemento;
-        $data['bairro'] = $result->row(0)->bairro;
-
-        $this->load->view('profissional/view', $data);
-    }
-
-    function changing() {
-        $id = (int) $this->input->post('id');
         $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
-        $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
-        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
+        $this->form_validation->set_rules('id_perfil', 'id_perfil', 'required');
 
         if($this->form_validation->run()){
 
-            $data['nome'] = $this->input->post('nome');
-            $data['data_nascimento'] =  $this->input->post('data_nascimento');
-            $data['id_cidade'] = $this->input->post('id_cidade');;
-            $data['telefone'] =  $this->input->post('telefone');
-            $data['celular'] =  $this->input->post('celular');
-            $data['email'] =  $this->input->post('email');
-            $data['cep'] =  $this->input->post('cep');
-            $data['endereco'] =  $this->input->post('endereco');
-            $data['numero'] =  $this->input->post('numero');
-            $data['complemento'] =  $this->input->post('complemento');
-            $data['bairro'] =  $this->input->post('bairro');
+            $data['id_perfil'] = $idPerfil;
+            $data['metodos'] = $this->input->post('metodos');
+            
+           // $checboxName = isset($_POST['metodos'])?true:false;
+            error_log(var_export($data['metodos'], true), 3,'C:/xampp/htdocs/salao/log.log');
 
-            if($this->profissional->changing($id, $data)){
-                $this->session->set_flashdata('update-ok','Alterado com sucesso!');
-                redirect('/profissional/view/'.$id);
+            ;
+
+            if($this->permissao->adding($data)){
+                $this->session->set_flashdata('insert-ok','Cadastrado com sucesso!');
+                redirect('/permissao/add/'.$idPerfil);
             }
         }else{
-            $this->view($id);
+            $this->add($idPerfil);
         }
-    }
 
-    public function getCidadesByUF() {
-        $cidades = $this->cidade->getCidadesByUF($this->input->post("id_estado"));
-
-
-        $option = "<option value=''></option>";
-        foreach($cidades as $linha) {
-            $option .= "<option value='$linha->id'>$linha->nome</option>";
-        }
-        //error_log(var_export($option, true), 3,'C:/xampp/htdocs/salao/log.log');
-        echo $option;
-
-    }
-
-    public function getInfoProfissional() {
-        $id =  (int) $this->input->post('id_profissional');
-        $result = $this->profissional->getInfoProfissional($id);
-
-        $array_profissionais = array(
-            'id' => $result->row(0)->id,
-            'nome' => $result->row(0)->nome,
-            'cidade' => $result->row(0)->cidade,
-            'uf' => $result->row(0)->uf,
-            'data_nascimento' => $result->row(0)->data_nascimento,
-            'telefone' => $result->row(0)->telefone,
-            'celular' => $result->row(0)->celular,
-            'email' => $result->row(0)->email,
-            'cep' => $result->row(0)->cep,
-            'endereco' => $result->row(0)->endereco,
-            'numero' => $result->row(0)->numero,
-            'complemento' => $result->row(0)->complemento,
-            'bairro' => $result->row(0)->bairro
-        );
-
-        echo json_encode($array_profissionais);
 
     }
 
