@@ -11,7 +11,7 @@
     </ul>
     <?php echo validation_errors();
     if( $this->session->flashdata('insert-ok')!="" ){
-        echo '<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>'.$this->session->flashdata('update-ok').'</strong></div>';
+        echo '<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>'.$this->session->flashdata('insert-ok').'</strong></div>';
     }
     ?>
     <div class="row-fluid sortable">
@@ -25,13 +25,14 @@
                 $attributes = array('id'=>'form_permissao','class' => 'form-horizontal');
                 echo form_open('permissao/adding',$attributes);
                 echo '<input type="hidden" name="id_perfil" value="'.$idPerfil.'">';
+                echo '<input type="hidden" id="metodosExcluidos" name="metodosExcluidos[]">';
 
               foreach ($list_permissoes as $modulos) {
                   echo $modulos['modulo']."</br>";
                  foreach ($modulos['metodos'] as $metodo) {
                      echo $metodo['metodo'];
                      $checked = ($metodo['checked'] == 1) ? "checked" : "";
-                     //echo '<input type="hidden" name="metodos[]" value="0">';
+
                      echo '<input type="checkbox" id="metodo" name="metodos[]" value="'.$metodo['id'].'" '.$checked."></br>";
                   }
                   echo "</br>";
@@ -58,12 +59,23 @@
 </div><!--/#content.span10-->
 </div><!--/fluid-row-->
 <script>
+
     $("body").on("click", "#metodo", function() {
         if ($(this).is(":checked")) {
-            alert("Checked");
+            //$("#metodosExcluidos")val($(this).val());
+            //alert($(this).val());
         }
-        else alert("Not Checked");
+        else {
+            var metodo = $(this).val();
+            $("#metodosExcluidos").after(
+                "<input type='hidden' id='metodosExcluidos' name='metodosExcluidos[]' value="+metodo+" />"
+            );
+
+        }
     });
+
+
+
 </script>
 <div class="clearfix"></div>
 

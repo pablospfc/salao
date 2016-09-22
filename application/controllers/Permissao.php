@@ -44,12 +44,10 @@ class Permissao extends MY_Controller
         if($this->form_validation->run()){
 
             $data['id_perfil'] = $idPerfil;
-            $data['metodos'] = $this->input->post('metodos');
-            
-           // $checboxName = isset($_POST['metodos'])?true:false;
-            error_log(var_export($data['metodos'], true), 3,'C:/xampp/htdocs/salao/log.log');
-
-            ;
+            $metodosNovos = $this->input->post('metodos');
+            $metodosExcluidos = $this->input->post('metodosExcluidos');
+            $data['metodos'] = (isset($metodosNovos)) ? $metodosNovos : null;
+            $data['metodosExcluidos'] = (isset($metodosExcluidos)) ? $metodosExcluidos : null;
 
             if($this->permissao->adding($data)){
                 $this->session->set_flashdata('insert-ok','Cadastrado com sucesso!');
