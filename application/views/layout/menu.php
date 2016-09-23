@@ -32,7 +32,6 @@
 								<li><a class="submenu" href="<?php echo site_url('empresa/view/'.$this->session->userdata('id_empresa')); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet">Empresa</span></a></li>
 								<li><a class="submenu" href="<?php echo site_url('usuario'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet">Usuários</span></a></li>
 								<li><a class="submenu" href="<?php echo site_url('perfil'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet">Perfis</span></a></li>
-								<li><a class="submenu" href="<?php echo site_url('permissao'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet">Permissões</span></a></li>
 							</ul>
 						</li>
 					</ul>

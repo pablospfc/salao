@@ -23,7 +23,6 @@ class Permissao_Model extends CI_Model
                     $dados['id_metodo'] = $metodo;
                     $result = $this->db->insert($this->table, $dados);
                 }
-
             }
 
         $dadosRepetidos = array_unique(array_filter($data['metodosExcluidos']));
