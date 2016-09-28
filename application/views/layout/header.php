@@ -48,6 +48,8 @@
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+    <script src="<?php echo base_url('includes/js/jquery.formula.js'); ?>"></script>
+    
     <script src="<?php echo base_url('includes/js/jquery.maskMoney.js'); ?>"></script>
 
     <script src="<?php echo base_url('includes/js/jquery-migrate-1.0.0.min.js'); ?>"></script>

@@ -6,7 +6,7 @@
  * Date: 12/07/16
  * Time: 10:01
  */
-class Estoque extends MY_Controller
+class Movimentacao extends MY_Controller
 {
     public function __construct(){
 
@@ -15,13 +15,16 @@ class Estoque extends MY_Controller
         $this->load->library('form_validation');
 
         $this->load->model('Movimentacao_Model', 'movimentacao', TRUE);
+        $this->load->model('Fornecedor_Model', 'fornecedor', TRUE);
+        $this->load->model('Produto_Model', 'produto', TRUE);
+        $this->load->model('Tipo_Movimentacao_Model', 'tipo_movimentacao', TRUE);
     }
 
     function index(){
         $data = array();
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
-        $data['list_movimentacoes'] = $this->cliente->getAll();
+        $data['list_movimentacoes'] = $this->movimentacao->getAll();
         $this->load->view('movimentacao/list', $data);
 
     }
@@ -31,39 +34,46 @@ class Estoque extends MY_Controller
         $this->load->view('layout/menu');
 
         $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
-        $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
-        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
+        $this->form_validation->set_rules('id_produto', 'id_produto', 'required');
+        $this->form_validation->set_rules('data_movimentacao', 'data_movimentacao', 'required');
 
         if( $this->form_validation->run()==FALSE ){
-            $estados = $this->estado->getEstados();
-            foreach($estados as $arr){
-                $data['list_estados'][$arr->id] = $arr->nome;
+            $fornecedores = $this->fornecedor->getAll();
+            foreach($fornecedores as $arr){
+                $data['list_fornecedores'][$arr->id] = $arr->nome;
             }
-            $this->load->view('cliente/add',$data);
+            $produtos = $this->produto->getAll();
+            foreach($produtos as $arr){
+                $data['list_produtos'][$arr->id] = $arr->nome;
+            }
+            $tipos_movimentacao = $this->tipo_movimentacao->getAll();
+            foreach($tipos_movimentacao as $arr){
+                $data['list_tipos_movimentacao'][$arr->id] = $arr->nome;
+            }
+            $this->load->view('movimentacao/add',$data);
         }else{
             $this->adding();
             $this->session->set_flashdata('insert-ok','Cadastrado com sucesso!');
-            redirect('/cliente');
+            redirect('/movimentacao');
         }
     }
 
     function adding() {
-        $data['nome'] = $this->input->post('nome');
-        $data['id_cidade'] = $this->input->post('id_cidade');
-        $data['telefone'] =  $this->input->post('telefone');
-        $data['data_nascimento'] =  $this->input->post('data_nascimento');
-        $data['celular'] =  $this->input->post('celular');
-        $data['email'] =  $this->input->post('email');
-        $data['cep'] =  $this->input->post('cep');
-        $data['endereco'] =  $this->input->post('endereco');
-        $data['numero'] =  $this->input->post('numero');
-        $data['complemento'] =  $this->input->post('complemento');
-        $data['bairro'] =  $this->input->post('bairro');
-        $this->cliente->adding($data);
+        $data['id_produto'] = $this->input->post('id_produto');
+        $data['id_tipo_movimentacao'] = $this->input->post('id_tipo_movimentacao');
+        $data['id_fornecedor'] = ($this->input->post('id_fornecedor')) ? $this->input->post('id_fornecedor') : null;
+        $data['data'] =  $this->input->post('data_movimentacao');
+        $data['quantidade'] =  $this->input->post('quantidade');
+        $data['custo_total'] = $this->input->post('custo_total');
+        $data['custo_unitario_compra'] =  $this->input->post('custo_unitario_compra');
+        $data['nota_fiscal'] =  $this->input->post('nota_fiscal');
+        $data['observacoes'] =  $this->input->post('observacoes');
+        $this->movimentacao->adding($data);
     }
 
     function view($id) {
         //$this->auth->CheckAuth($this->router->fetch_class(), $this->router->fetch_method());
+        $data['custo_total'] =  $this->input->post('email');
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
         $result = $this->cliente->getById($id);
