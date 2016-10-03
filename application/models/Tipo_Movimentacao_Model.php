@@ -15,7 +15,7 @@ class Tipo_Movimentacao_Model extends CI_Model
     }
 
     public function getAll() {
-        $result = $this->db->query("SELECT * FROM {$this->table}");
+        $result = $this->db->query("SELECT * FROM {$this->table} WHERE id <> 7");
         return $result->result();
     }
 

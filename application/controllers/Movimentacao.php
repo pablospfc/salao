@@ -18,6 +18,7 @@ class Movimentacao extends MY_Controller
         $this->load->model('Fornecedor_Model', 'fornecedor', TRUE);
         $this->load->model('Produto_Model', 'produto', TRUE);
         $this->load->model('Tipo_Movimentacao_Model', 'tipo_movimentacao', TRUE);
+        $this->load->model('Cliente_Model', 'cliente', TRUE);
     }
 
     function index(){
@@ -27,6 +28,13 @@ class Movimentacao extends MY_Controller
         $data['list_movimentacoes'] = $this->movimentacao->getAll();
         $this->load->view('movimentacao/list', $data);
 
+    }
+
+    function extrato($idProduto) {
+        $this->load->view('layout/header');
+        $this->load->view('layout/menu');
+        $data['extrato'] = $this->movimentacao->getExtratoEstoque($idProduto);
+        $this->load->view('movimentacao/extrato', $data);
     }
 
     function add() {
@@ -50,6 +58,10 @@ class Movimentacao extends MY_Controller
             foreach($tipos_movimentacao as $arr){
                 $data['list_tipos_movimentacao'][$arr->id] = $arr->nome;
             }
+            $clientes = $this->cliente->getAll();
+            foreach($clientes as $arr){
+                $data['list_clientes'][$arr->id] = $arr->nome;
+            }
             $this->load->view('movimentacao/add',$data);
         }else{
             $this->adding();
@@ -62,6 +74,7 @@ class Movimentacao extends MY_Controller
         $data['id_produto'] = $this->input->post('id_produto');
         $data['id_tipo_movimentacao'] = $this->input->post('id_tipo_movimentacao');
         $data['id_fornecedor'] = ($this->input->post('id_fornecedor')) ? $this->input->post('id_fornecedor') : null;
+        $data['id_cliente'] = ($this->input->post('id_cliente')) ? $this->input->post('id_cliente') : null;
         $data['data'] =  $this->input->post('data_movimentacao');
         $data['quantidade'] =  $this->input->post('quantidade');
         $data['custo_total'] = $this->input->post('custo_total');

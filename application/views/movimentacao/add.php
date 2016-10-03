@@ -99,6 +99,23 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="control-group cliente">
+                        <label class="control-label" for="id_cliente">Cliente:</label>
+                        <div class="controls">
+                            <select name="id_cliente" id="id_cliente" class="form-control">
+                                <option value="" selected></option>
+                                <?php
+
+                                foreach($list_clientes as $cliente_id => $cliente_nome){
+                                    echo '<option value="'.$cliente_id.'">'.$cliente_nome.'</option>';
+                                }
+
+                                ?>
+
+                            </select>
+                        </div>
+                    </div>
                     <div class="control-group nota_fiscal">
                         <label class="control-label" for="focusedInput">Nota Fiscal:</label>
                         <div class="controls">
@@ -116,7 +133,7 @@
 
                 <div class="form-actions">
                     <?php echo form_button(array('class' => 'btn btn-primary', 'type' => 'submit', 'content' => 'Salvar')); ?>
-                    <?php echo form_button(array('class' => 'btn dark-blue', 'type' => 'button', 'content' => 'Voltar', 'onclick' => 'window.open(\''.base_url().'cliente\', \'_self\')')); ?>
+                    <?php echo form_button(array('class' => 'btn dark-blue', 'type' => 'button', 'content' => 'Voltar', 'onclick' => 'window.open(\''.base_url().'movimentacao\', \'_self\')')); ?>
                     <?php echo form_close(); ?>
                 </div>
 
@@ -151,16 +168,23 @@
             if($('#id_tipo_movimentacao').val() == 1){
                 $(".fornecedor").show();
                 $(".nota_fiscal").show();
+                $(".custo_unitario_compra").show();
+                $(".custo_total").show();
+                $(".cliente").hide();
             }
 
             if($('#id_tipo_movimentacao').val() == 2){
                 $(".fornecedor").show();
                 $(".nota_fiscal").show();
+                $(".cliente").hide();
             }
 
             if($('#id_tipo_movimentacao').val() == 4){
-                //$(".credito").show();
-                $(".fornecedor").hide();
+                $(".fornecedor").show();
+                $(".nota_fiscal").show();
+                $(".cliente").hide();
+                $(".custo_unitario_compra").show();
+                $(".custo_total").show();
             }
 
             if($('#id_tipo_movimentacao').val() == 5 ){
@@ -168,6 +192,7 @@
                 $(".nota_fiscal").hide();
                 $(".fornecedor").hide();
                 $(".custo_total").hide();
+                $(".cliente").hide();
             }
 
             if($('#id_tipo_movimentacao').val() == 6){
@@ -175,6 +200,15 @@
                 $(".nota_fiscal").hide();
                 $(".fornecedor").hide();
                 $(".custo_total").hide();
+                $(".cliente").hide();
+            }
+
+            if($('#id_tipo_movimentacao').val() == 3){
+                $(".fornecedor").hide();
+                $(".nota_fiscal").hide();
+                $(".custo_total").show();
+                $(".custo_unitario_compra").show();
+                $(".cliente").show();
             }
         }
     });
