@@ -50,8 +50,9 @@ class Movimentacao_Model extends CI_Model
         return $this->db->query("SELECT
                                     tb_movimentacao_produto.id,
                                     tb_produto.nome AS produto,
+                                    tb_tipo_movimentacao_produto.id AS id_tipo_movimentacao_produto,
                                     tb_tipo_movimentacao_produto.nome AS tipo_movimentacao,
-                                    tb_movimentacao_produto.data AS data,
+                                    DATE_FORMAT(tb_movimentacao_produto.data,'%d/%m/%Y') AS data,
                                     tb_movimentacao_produto.quantidade AS quantidade,
                                     tb_movimentacao_produto.custo_unitario_compra AS custo_unitario_compra,
                                     tb_movimentacao_produto.custo_total AS custo_total,
@@ -67,7 +68,9 @@ class Movimentacao_Model extends CI_Model
                                     LEFT JOIN
                                     tb_cliente ON tb_cliente.id = tb_movimentacao_produto.id_cliente
                                 WHERE
-                                    id_produto = {$idProduto}")->result();
+                                    id_produto = {$idProduto}
+                                ORDER BY tb_movimentacao_produto.data ASC
+                                    ")->result();
     }
     
     public function getAll() {
