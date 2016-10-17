@@ -99,6 +99,7 @@ class Cartao extends MY_Controller
                 redirect('/cartao/view/'.$id);
             }
         }else{
+             
             $this->view($id);
         }
     }

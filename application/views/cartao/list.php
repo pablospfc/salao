@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Cartões</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+        <a href="<?php echo site_url('cartao/add'); ?>" class="btn btn-primary btn-sm">
+            Novo
+        </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Cartões</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,224 +23,61 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Cartões</h2>
-                <div class="box-icon">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                     Cartões
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Bandeira</th>
+                            <th class="text-center">Tipo de Operação</th>
+                            <th class="text-center">Número de Parcelas</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($list_cartoes as $cartao): ?>
+                            <tr>
+                                <td class="text-center"><?php echo $cartao->bandeira_cartao;?></td>
+                                <td class="text-center"><?php echo $cartao->tipo_operacao;?></td>
+                                <td class="text-center"><?php echo $cartao->numero_maximo_parcelas;?></td>
+                                <td class="text-center">
+                                    <a class="btn btn-success btn-sm" href="javascript:;" onclick="janelaDetalhamentoCartao(<?= $cartao->id ?>, <?= $cartao->id_tipo_operacao ?>)">
+                                        <i class="glyphicon glyphicon-zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('cartao/view/'.$cartao->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $cartao->id ?>" data-nome="<?= $cartao->bandeira_cartao ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
 
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-            <a href="<?php echo site_url('cartao/add'); ?>" class="btn btn-primary btn-sm"> <i
-                    class="fa-icon-file"></i>Novo
-            </a>
+                <!-- /.panel-body -->
             </div>
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                    <thead>
-                    <tr>
-                        <th>Bandeira</th>
-                        <th>Tipo de Operação</th>
-                        <th>Número de Parcelas</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($list_cartoes as $cartao): ?>
-                        <tr>
-                            <td><?php echo $cartao->bandeira_cartao;?></td>
-                            <td class="center"><?php echo $cartao->tipo_operacao;?></td>
-                            <td class="center"><?php echo $cartao->numero_maximo_parcelas;?></td>
-                            <td class="center">
-                                <a class="btn btn-success" href="javascript:;" onclick="janelaDetalhamentoCartao(<?= $cartao->id ?>, <?= $cartao->id_tipo_operacao ?>)">
-                                    <i class="halflings-icon white zoom-in"></i>
-                                </a>
-                                <a class="btn btn-info" href="<?php echo base_url('cartao/view/'.$cartao->id)?>">
-                                    <i class="halflings-icon white edit"></i>
-                                </a>
-                                <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $cartao->id ?>" data-nome="<?= $cartao->bandeira_cartao ?>">
-                                    <i class="halflings-icon white trash"></i>
-                                </a>
-                            </td>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-                        </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
-
-<div class="modal fade" id="modal_detalhamento_debito" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Detalhamento do Cartão de Débito</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped table-bordered bootstrap-datatable">
-
-                    <tr>
-                        <td><strong>Bandeira:</strong></td>
-                        <td><label id="bandeira_cartao1"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Tipo de Operação:</strong></td>
-                        <td><label id="tipo_operacao1"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Taxa de Cartão de Débito:</strong></td>
-                        <td><label id="taxa_cartao_debito1"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Número Máximo de Parcelas:</strong></td>
-                        <td><label id="numero_maximo_parcelas1"></label></td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div class="modal fade" id="modal_detalhamento_credito" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Detalhamento do Cartão de Cŕedito</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped table-bordered bootstrap-datatable">
-
-                    <tr>
-                        <td><strong>Bandeira:</strong></td>
-                        <td><label id="bandeira_cartao2"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Tipo de Operação:</strong></td>
-                        <td><label id="tipo_operacao2"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Taxa de Cartão de Cŕedito à Vista:</strong></td>
-                        <td><label id="taxa_cartao_credito_vista2"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Taxa de Cartão de Cŕedito à Prazo:</strong></td>
-                        <td><label id="taxa_cartao_credito_prazo2"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Número Máximo de Parcelas:</strong></td>
-                        <td><label id="numero_maximo_parcelas2"></label></td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div class="modal fade" id="modal_detalhamento_credito_debito" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Detalhamento do Cartão de Cŕedito e Débito</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-striped table-bordered bootstrap-datatable">
-
-                    <tr>
-                        <td><strong>Bandeira:</strong></td>
-                        <td><label id="bandeira_cartao3"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Tipo de Operação:</strong></td>
-                        <td><label id="tipo_operacao3"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Taxa de Cartão de Débito:</strong></td>
-                        <td><label id="taxa_cartao_debito3"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Taxa de Cartão de Cŕedito à Vista:</strong></td>
-                        <td><label id="taxa_cartao_credito_vista3"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Taxa de Cartão de Cŕedito à Prazo:</strong></td>
-                        <td><label id="taxa_cartao_credito_prazo3"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Número Máximo de Parcelas:</strong></td>
-                        <td><label id="numero_maximo_parcelas3"></label></td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div class="modal fade" id="modal_confirmation">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Confirmação de Exclusão</h4>
-            </div>
-            <div class="modal-body">
-                <p>Deseja realmente excluir o cartão <strong><span id="nome_exclusao"></span></strong>?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                <button type="button" class="btn btn-danger" id="btn_excluir">Sim</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>
+<!-- /#wrapper -->
 
 <script type="text/javascript">
 

@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Fornecedores</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+            <a href="<?php echo site_url('fornecedor/add'); ?>" class="btn btn-primary btn-sm">
+                Novo
+            </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Fornecedores</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,79 +23,65 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Fornecedores</h2>
-                <div class="box-icon">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Fornecedores
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Celular</th>
+                            <th>Email</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($list_fornecedores as $fornecedor): ?>
+                            <tr>
+                                <td><?php echo $fornecedor->nome;?></td>
+                                <td class="center"><?php echo $fornecedor->telefone;?></td>
+                                <td class="center"><?php echo $fornecedor->celular;?></td>
+                                <td class="center">
+                                    <?php echo $fornecedor->email;?>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-success btn-sm" href="javascript:;" onclick="janelaDetalhamentoFornecedor(<?= $fornecedor->id ?>, <?= $fornecedor->id ?>)">
+                                        <i class="glyphicon glyphicon-zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('fornecedor/view/'.$fornecedor->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $fornecedor->id ?>" data-nome="<?= $fornecedor->nome ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
 
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-                <a href="<?php echo site_url('fornecedor/add'); ?>" class="btn btn-primary btn-sm"> <i
-                        class="fa-icon-file"></i>Novo
-                </a>
+                <!-- /.panel-body -->
             </div>
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Celular</th>
-                        <th>Email</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($list_fornecedores as $fornecedor): ?>
-                    <tr>
-                        <td><?php echo $fornecedor->nome;?></td>
-                        <td class="center"><?php echo $fornecedor->telefone;?></td>
-                        <td class="center"><?php echo $fornecedor->celular;?></td>
-                        <td class="center">
-                            <?php echo $fornecedor->email;?>
-                        </td>
-                        <td class="center">
-                            <a class="btn btn-success" href="javascript:;" onclick="janelaDetalhamentoFornecedor(<?= $fornecedor->id ?>)">
-                                <i class="halflings-icon white zoom-in"></i>
-                            </a>
-                            <a class="btn btn-info" href="<?php echo base_url('fornecedor/view/'.$fornecedor->id)?>">
-                                <i class="halflings-icon white edit"></i>
-                            </a>
-                            <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $fornecedor->id ?>" data-nome="<?= $fornecedor->nome ?>">
-                                <i class="halflings-icon white trash"></i>
-                            </a>
-                        </td>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-                    </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
-
+</div>
+<!-- /#wrapper -->
 <div class="modal fade" id="modal_detalhamento" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">

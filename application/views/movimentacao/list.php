@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Estoque</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+            <a href="<?php echo site_url('movimentacao/add'); ?>" class="btn btn-primary btn-sm">
+                Nova Movimentação
+            </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="index.html">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Movimentação de Produtos</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,73 +23,65 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Movimentação de Produtos</h2>
-                <div class="box-icon">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Clientes
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Celular</th>
+                            <th>Email</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($list_clientes as $cliente): ?>
+                            <tr>
+                                <td><?php echo $cliente->nome;?></td>
+                                <td class="center"><?php echo $cliente->telefone;?></td>
+                                <td class="center"><?php echo $cliente->celular;?></td>
+                                <td class="center">
+                                    <?php echo $cliente->email;?>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-success btn-sm" href="javascript:;" onclick="janelaDetalhamentoCliente(<?= $cliente->id ?>, <?= $cliente->id ?>)">
+                                        <i class="glyphicon glyphicon-zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('cliente/view/'.$cliente->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $cliente->id ?>" data-nome="<?= $cliente->nome ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
 
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-                <a href="<?php echo site_url('movimentacao/add'); ?>" class="btn btn-primary btn-sm"> <i
-                        class="fa-icon-file"></i>Lançar Movimentação
-                </a>
+                <!-- /.panel-body -->
             </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                    <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Quantidade</th>
-                        <th>Custo Unitário Médio</th>
-                        <th>Custo Total</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($list_movimentacoes as $movimentacao): ?>
-                        <tr>
-                            <td><?php echo $movimentacao->produto;?></td>
-                            <td class="center"><?php echo $movimentacao->quantidade;?></td>
-                            <td class="center"><?php echo "R$ ".$movimentacao->custo_medio;?></td>
-                            <td class="center">
-                                <?php echo "R$ ".$movimentacao->total;?>
-                            </td>
-                            <td class="center">
-                                <a class="btn btn-success" href="<?php echo base_url('movimentacao/extrato/'.$movimentacao->id)?>">
-                                    <i class="halflings-icon white list-alt" ></i>
-                                </a>
-                            </td>
-
-                        </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2016 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+</div>
+<!-- /#wrapper -->
 
 </body>
 </html>

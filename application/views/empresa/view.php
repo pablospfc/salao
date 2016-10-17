@@ -10,169 +10,135 @@
         });
     }
 </script>
-<div id="content" class="span10">
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Empresa</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Empresa</a></li>
-    </ul>
     <?php echo validation_errors();
     if( $this->session->flashdata('update-ok')!="" ){
         echo '<div class="alert alert-info"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>'.$this->session->flashdata('update-ok').'</strong></div>';
     }
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Atualização de Empresa</h2>
-            </div>
-            <div class="box-content">
-                <?php echo validation_errors();?>
-                <?php
-                $attributes = array('class' => 'form-horizontal');
-                echo form_open('empresa/changing',$attributes); ?>
-                <input type="hidden" name="id" id="id" value="<?php echo $id?>" />
-                <fieldset>
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Nome Fantasia:</label>
-                        <div class="controls">
-                            <input class="form-control" id="nome_fantasia" type="text" name="nome_fantasia" value="<?=( isset($nome_fantasia) ) ? $nome_fantasia : "";?>">
-                        </div>
-                    </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Razão Social:</label>
-                        <div class="controls">
-                            <input class="form-control" id="razao_social" type="text" name="razao_social" value="<?=( isset($razao_social) ) ? $razao_social : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">CNPJ:</label>
-                        <div class="controls">
-                            <input class="form-control" id="cnpj" type="text" name="cnpj" value="<?=( isset($cnpj) ) ? $cnpj : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Telefone:</label>
-                        <div class="controls">
-                            <input class="form-control" id="telefone" type="text" name="telefone" value="<?=( isset($telefone) ) ? $telefone : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Email:</label>
-                        <div class="controls">
-                            <input class="form-control" id="email" type="text" name="email" value="<?=( isset($email) ) ? $email : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Telefone:</label>
-                        <div class="controls">
-                            <input class="form-control" id="telefone" type="text" name="telefone" value="<?=( isset($telefone) ) ? $telefone : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Logradouro:</label>
-                        <div class="controls">
-                            <input class="form-control" id="logradouro" type="text" name="logradouro" value="<?=( isset($logradouro) ) ? $logradouro : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">CEP:</label>
-                        <div class="controls">
-                            <input class="form-control" id="cep" type="text" name="cep" value="<?=( isset($cep) ) ? $cep : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Bairro:</label>
-                        <div class="controls">
-                            <input class="form-control" id="bairro" type="text" name="bairro" value="<?=( isset($bairro) ) ? $bairro : "";?>">
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="id_estado">Estado:</label>
-                        <div class="controls">
-                            <select name="id_estado" id="id_estado" class="form-control" onchange="busca_cidades($(this).val());">
-                                <option value="" selected></option>
-                                <?php
-
-                                foreach($list_estados as $estado_id => $estado_nome){
-                                    $selected = ($id_estado == $estado_id) ? 'selected':'';
-                                    echo '<option value="'.$estado_id.'" '.$selected.'>'.$estado_nome.'</option>';
-                                }
-
-                                ?>
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="cidades">Cidade:</label>
-                        <div class="controls">
-                            <select name="id_cidade" id="cidades" class="form-control">
-                                <?php
-
-                                foreach($list_cidades as $cidade_id => $cidade_nome){
-                                    $selected = ($id_cidade == $cidade_id) ? 'selected':'';
-                                    echo '<option value="'.$cidade_id.'" '.$selected.'>'.$cidade_nome.'</option>';
-                                }
-
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="focusedInput">Site:</label>
-                        <div class="controls">
-                            <input class="form-control" id="site" type="text" name="site" value="<?=( isset($site) ) ? $site : "";?>">
-                        </div>
-                    </div>
-
-                </fieldset>
-
-                <div class="form-actions">
-                    <?php echo form_button(array('class' => 'btn btn-primary', 'type' => 'submit', 'content' => 'Alterar')); ?>
-                    <?php echo form_close(); ?>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Atualização de Empresa
                 </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <?php echo validation_errors();?>
 
+                            <form role="form" method="post" action="<?php echo site_url('empresa/changing'); ?>">
+                                <input type="hidden" name="id" id="id" value="<?php echo $id?>" />
+
+                                <div class="form-group">
+                                    <label>Nome Fantasia:</label>
+                                    <input class="form-control" id="nome_fantasia" type="text" name="nome_fantasia" value="<?=( isset($nome_fantasia) ) ? $nome_fantasia : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Razão Social:</label>
+                                    <input class="form-control" id="razao_social" type="text" name="razao_social" value="<?=( isset($razao_social) ) ? $razao_social : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CNPJ</label>
+                                    <input class="form-control" id="cnpj" type="text" name="cnpj" value="<?=( isset($cnpj) ) ? $cnpj : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Telefone</label>
+                                    <input class="form-control" id="telefone" type="text" name="telefone" value="<?=( isset($telefone) ) ? $telefone : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" id="email" type="text" name="email" value="<?=( isset($email) ) ? $email : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Logradouro</label>
+                                    <input class="form-control" id="logradouro" type="text" name="logradouro" value="<?=( isset($logradouro) ) ? $logradouro : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CEP</label>
+                                    <input class="form-control" id="cep" type="text" name="cep" value="<?=( isset($cep) ) ? $cep : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Bairro</label>
+                                    <input class="form-control" id="bairro" type="text" name="bairro" value="<?=( isset($bairro) ) ? $bairro : "";?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Estado:</label>
+                                    <select name="id_estado" id="id_estado" class="form-control" onchange="busca_cidades($(this).val());">
+                                        <option value="" selected></option>
+                                        <?php
+
+                                        foreach($list_estados as $estado_id => $estado_nome){
+                                            $selected = ($id_estado == $estado_id) ? 'selected':'';
+                                            echo '<option value="'.$estado_id.'" '.$selected.'>'.$estado_nome.'</option>';
+                                        }
+
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Cidade:</label>
+                                    <select name="id_cidade" id="cidades" class="form-control">
+
+                                        <?php
+
+                                        foreach($list_cidades as $cidade_id => $cidade_nome){
+                                            $selected = ($id_cidade == $cidade_id) ? 'selected':'';
+                                            echo '<option value="'.$cidade_id.'" '.$selected.'>'.$cidade_nome.'</option>';
+                                        }
+
+                                        ?>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Site</label>
+                                    <input class="form-control" id="site" type="text" name="site" value="<?=( isset($site) ) ? $site : "";?>">
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary">
+                                            Salvar
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
             </div>
-
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
 <script type="text/javascript">
     var base_url = '<?php echo base_url() ?>';
 

@@ -91,6 +91,7 @@ class Empresa extends MY_Controller
     }
 
     public function changing() {
+        //error_log(var_export("chegou aqui", true), 3,'C:/xampp/htdocs/salao/log.log');
         $id = (int) $this->input->post('id');
         $this->form_validation->set_error_delimiters('<div class="alert alert-error fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('nome_fantasia', 'nome_fantasia', 'required|max_length[50]');
