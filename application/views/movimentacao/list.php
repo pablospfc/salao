@@ -35,31 +35,25 @@
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>Celular</th>
-                            <th>Email</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Custo Unitário Médio</th>
+                            <th>Custo Total</th>
                             <th>Ações</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($list_clientes as $cliente): ?>
+                        <?php foreach($list_movimentacoes as $movimentacao): ?>
                             <tr>
-                                <td><?php echo $cliente->nome;?></td>
-                                <td class="center"><?php echo $cliente->telefone;?></td>
-                                <td class="center"><?php echo $cliente->celular;?></td>
+                                <td><?php echo $movimentacao->produto;?></td>
+                                <td class="center"><?php echo $movimentacao->quantidade;?></td>
+                                <td class="center"><?php echo "R$ ".$movimentacao->custo_medio;?></td>
                                 <td class="center">
-                                    <?php echo $cliente->email;?>
+                                    <?php echo "R$ ".$movimentacao->total;?>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-success btn-sm" href="javascript:;" onclick="janelaDetalhamentoCliente(<?= $cliente->id ?>, <?= $cliente->id ?>)">
-                                        <i class="glyphicon glyphicon-zoom-in"></i>
-                                    </a>
-                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('cliente/view/'.$cliente->id)?>">
-                                        <i class="glyphicon glyphicon-edit"></i>
-                                    </a>
-                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $cliente->id ?>" data-nome="<?= $cliente->nome ?>">
-                                        <i class="glyphicon glyphicon-remove"></i>
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('movimentacao/extrato/'.$movimentacao->id)?>">
+                                        <i class="glyphicon glyphicon-list"></i>
                                     </a>
                                 </td>
 

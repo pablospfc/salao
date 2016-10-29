@@ -86,4 +86,23 @@ class Movimentacao_Model extends CI_Model
         return $this->db->query($query)->result();
     }
 
+    public function getById($id) {
+        $query = "SELECT * FROM tb_movimentacao_produto WHERE id = {$id}";
+       return $this->db->query($query);
+    }
+
+    function changing($id, $data){
+        $this->db->where('md5(id)', md5($id));
+
+        $this->db->update($this->table, $data);
+
+        return (bool) $this->db->affected_rows();
+    }
+
+    function del($id){
+        $this->db->where('md5(id)', md5($id));
+        $this->db->delete($this->table);
+        return (bool) $this->db->affected_rows();
+    }
+
 }

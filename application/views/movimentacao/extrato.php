@@ -59,13 +59,12 @@
                                 <td><?php echo $qtd; ?></td>
                                 <td class="center"><?php echo $value->custo_unitario_compra; ?></td>
                                 <td><?php echo $total; ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-lg btn-primary" disabled="disabled">Primary button</button>
-                                    <a class="btn btn-info disabled" role="button" href="<?php echo base_url('movimentacao/view/'.$value->id)?>">
-                                        <i class="halflings-icon white edit"></i>
+                                <td class="text-center">
+                                    <a class="btn btn-info btn-sm <?php if ($value->id_tipo_movimentacao_produto==7) echo "disabled";?>" href="<?php echo base_url('movimentacao/view/'.$value->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
                                     </a>
-                                    <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $value->id ?>" data-nome="<?= $value->id ?>">
-                                        <i class="halflings-icon white trash"></i>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao <?php if ($value->id_tipo_movimentacao_produto==7) echo "disabled";?>" href="#" data-id="<?= $value->id ?>" data-nome="<?= $value->produto ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
                                     </a>
                                 </td>
                             </tr>
