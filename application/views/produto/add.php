@@ -1,129 +1,83 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Produtos</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Cadastro de Produtos
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <?php echo validation_errors();?>
 
+                            <form role="form" method="post" action="<?php echo base_url('produto/add'); ?>">
 
-<div id="content" class="span10">
-
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Produtos</a></li>
-    </ul>
-
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Cadastro de Produtos</h2>
-            </div>
-            <div class="box-content">
-                <?php echo validation_errors();?>
-                <?php
-                $attributes = array('class' => 'form-horizontal');
-                echo form_open('produto/add',$attributes); ?>
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Nome:</label>
-                            <div class="controls">
-                                <input class="form-control" required id="nome" type="text" name="nome" >
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="id_tipo_produto">Tipo de Produto:</label>
-                            <div class="controls">
-                                <select required="required" name="id_tipo_produto" id="id_tipo_produto" class="form-control">
-                                    <option value="" selected></option>
-                                    <?php
-
-                                    foreach($list_tipos_produtos as $tipos_produto_id => $tipo_produto){
-                                        echo '<option value="'.$tipos_produto_id.'">'.$tipo_produto.'</option>';
-                                    }
-
-                                    ?>
-
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Custo:</label>
-                            <div class="controls">
-                                <div class="input-prepend input-append">
-                                    <span class="add-on">R$</span><input class="form-control" required id="custo" type="text" name="custo" />
+                                <div class="form-group">
+                                    <label>Nome:</label>
+                                    <input class="form-control" id="nome" type="text" name="nome" required>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Preço:</label>
-                            <div class="controls">
-                                <div class="input-prepend input-append">
-                                    <span class="add-on">R$</span><input class="form-control" required id="preco" type="text" name="preco" />
+                                <div class="form-group">
+                                    <label>Tipo de Produto:</label>
+                                    <select name="id_tipo_produto" id="id_tipo_produto" class="form-control">
+                                        <option value="" selected></option>
+                                        <?php
+
+                                        foreach($list_tipos_produtos as $tipos_produto_id => $tipo_produto){
+                                            echo '<option value="'.$tipos_produto_id.'">'.$tipo_produto.'</option>';
+                                        }
+
+                                        ?>
+                                    </select>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Desconto Máximo:</label>
-                            <div class="controls">
-                                <div class="input-prepend input-append">
-                                    <input class="form-control" id="desconto_maximo" type="text" name="desconto_maximo" pattern="[0-9]+$">
-                                    <span class="add-on">%</span>
+                                <div class="form-group">
+                                    <label>Custo:</label>
+                                    <div class="input-group">
+                                    <div class="input-group-addon">R$</div>
+                                    <input class="form-control" id="preco" type="text" name="preco" required>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Desconto Promocional:</label>
-                            <div class="controls">
-                                <div class="input-prepend input-append">
-                                    <input class="form-control" id="desconto_promocional" type="text" name="desconto_promocional" pattern="[0-9]+$">
-                                    <span class="add-on">%</span>
+                                <div class="form-group">
+                                    <label>Desconto Máximo:</label>
+                                    <div class="input-group">
+                                        <input class="form-control" id="desconto_maximo" type="text" name="desconto_maximo" required pattern="[0-9]+$">
+                                        <div class="input-group-addon">%</div>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary">
+                                            Salvar
+                                        </button>
+                                        <button type="reset" class="btn btn-default">
+                                            Limpar
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
-
-                        </fieldset>
-
-                    <div class="form-actions">
-                        <?php echo form_button(array('class' => 'btn btn-primary', 'type' => 'submit', 'content' => 'Salvar')); ?>
-                        <?php echo form_button(array('class' => 'btn dark-blue', 'type' => 'button', 'content' => 'Voltar', 'onclick' => 'window.open(\''.base_url().'produto\', \'_self\')')); ?>
-                        <?php echo form_close(); ?>
+                        <!-- /.col-lg-6 (nested) -->
                     </div>
-
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
             </div>
-
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#custo").maskMoney({decimal:",", thousands:".", allowZero:true});
-        $("#preco").maskMoney({decimal:",", thousands:".", allowZero:true});
-    });
-</script>
-
-</body>
-</html>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>

@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Perfis</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+            <a href="<?php echo site_url('perfil/add'); ?>" class="btn btn-primary btn-sm">
+                Novo
+            </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Perfis</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,70 +23,57 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Perfis</h2>
-                <div class="box-icon">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Perfis
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($list_perfis as $perfil): ?>
+                            <tr>
+                                <td><?php echo $perfil->nome;?></td>
+                                <td class="center">
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('perfil/view/'.$perfil->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $perfil->id ?>" data-nome="<?= $perfil->nome ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                    <a class="btn btn-primary" href="<?php echo base_url('permissao/add/'.$perfil->id)?>">
+                                        Permissões
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
 
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-                <a href="<?php echo site_url('perfil/add'); ?>" class="btn btn-primary btn-sm"> <i
-                        class="fa-icon-file"></i>Novo
-                </a>
+                <!-- /.panel-body -->
             </div>
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($list_perfis as $perfil): ?>
-                        <tr>
-                            <td><?php echo $perfil->nome;?></td>
-                            <td class="center">
-                                <a class="btn btn-info" href="<?php echo base_url('perfil/view/'.$perfil->id)?>">
-                                    <i class="halflings-icon white edit"></i>
-                                </a>
-                                <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $perfil->id ?>" data-nome="<?= $perfil->nome ?>">
-                                    <i class="halflings-icon white trash"></i>
-                                </a>
-                                <a class="btn btn-primary" href="<?php echo base_url('permissao/add/'.$perfil->id)?>">
-                                   Permissões
-                                </a>
-                            </td>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-                        </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+</div>
+<!-- /#wrapper -->
 
 <div class="modal fade" id="modal_confirmation">
     <div class="modal-dialog">
@@ -130,7 +119,6 @@
             document.location.href = base_url + "perfil/del/"+id;
         });
     });
-
 </script>
 </body>
 </html>

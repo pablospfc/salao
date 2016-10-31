@@ -10,150 +10,126 @@
         });
     }
 </script>
-<div id="content" class="span10">
 
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Profissionais</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Cadastro de Profissionais
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <?php echo validation_errors();?>
 
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Profissionais</a></li>
-    </ul>
+                            <form role="form" method="post" action="<?php echo base_url('profissional/add'); ?>">
 
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Cadastro de Profissionais</h2>
-            </div>
-            <div class="box-content">
-                <?php echo validation_errors();?>
-                <?php
-                $attributes = array('class' => 'form-horizontal');
-                echo form_open('profissional/add',$attributes); ?>
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Nome:</label>
-                            <div class="controls">
-                                <input class="form-control" id="nome" type="text" name="nome" >
-                            </div>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Data de Nascimento:</label>
-                            <div class="controls">
-                                <input class="form-control" id="data_nascimento" type="date" name="data_nascimento" >
-                            <span class="add-on"> <i
-                                    data-time-icon="icon-time" data-date-icon="icon-calendar"> </i>
-							</span>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Telefone:</label>
-                            <div class="controls">
-                                <input class="form-control" id="telefone" type="text" name="telefone" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Email:</label>
-                            <div class="controls">
-                                <input class="form-control" id="email" type="text" name="email" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Celular:</label>
-                            <div class="controls">
-                                <input class="form-control" id="celular" type="text" name="celular" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Endereço:</label>
-                            <div class="controls">
-                                <input class="form-control" id="endereco" type="text" name="endereco" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">CEP:</label>
-                            <div class="controls">
-                                <input class="form-control" id="cep" type="text" name="cep" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Número:</label>
-                            <div class="controls">
-                                <input class="form-control" id="numero" type="text" name="numero" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Complemento:</label>
-                            <div class="controls">
-                                <input class="form-control" id="complemento" type="text" name="complemento" >
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="focusedInput">Bairro:</label>
-                            <div class="controls">
-                                <input class="form-control" id="bairro" type="text" name="bairro" >
-                            </div>
-                        </div>
-                       <div class="control-group">
-                            <label class="control-label" for="id_estado">Estado:</label>
-                        <div class="controls">
-                                <select name="id_estado" id="id_estado" class="form-control" onchange="busca_cidades($(this).val());">
-                                    <option value="" selected></option>
-                                    <?php
-
-                                    foreach($list_estados as $estado_id => $estado_nome){
-                                        echo '<option value="'.$estado_id.'">'.$estado_nome.'</option>';
-                                    }
-
-                                    ?>
-
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label>Nome:</label>
+                                    <input class="form-control" id="nome" type="text" name="nome" required>
                                 </div>
-                        <div class="control-group">
-                            <label class="control-label" for="cidades">Cidade:</label>
-                            <div class="controls">
-                                <select name="id_cidade" id="cidades" class="form-control" >
 
-                                </select>
-                            </div>
+                                <div class="form-group">
+                                    <label>Data de Nascimento:</label>
+                                    <input class="form-control" id="data_nascimento" type="date" name="data_nascimento" required >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Telefone:</label>
+                                    <input class="form-control" id="telefone" type="text" name="telefone" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input class="form-control" id="email" type="text" name="email" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Celular:</label>
+                                    <input class="form-control" id="celular" type="text" name="celular" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Endereço:</label>
+                                    <input class="form-control" id="endereco" type="text" name="endereco" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CEP:</label>
+                                    <input class="form-control" id="cep" type="text" name="cep" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Número:</label>
+                                    <input class="form-control" id="numero" type="text" name="numero" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Complemento:</label>
+                                    <input class="form-control" id="complemento" type="text" name="complemento" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Bairro:</label>
+                                    <input class="form-control" id="bairro" type="text" name="bairro" >
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Estado:</label>
+                                    <select name="id_estado" id="id_estado" class="form-control" onchange="busca_cidades($(this).val());">
+                                        <option value="" selected></option>
+                                        <?php
+
+                                        foreach($list_estados as $estado_id => $estado_nome){
+                                            echo '<option value="'.$estado_id.'">'.$estado_nome.'</option>';
+                                        }
+
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Cidade:</label>
+                                    <select name="id_cidade" id="cidades" class="form-control">
+
+                                    </select>
+                                </div>
+
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary">
+                                            Salvar
+                                        </button>
+                                        <button type="reset" class="btn btn-default">
+                                            Limpar
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
                         </div>
-
-                        </fieldset>
-
-                    <div class="form-actions">
-                        <?php echo form_button(array('class' => 'btn btn-primary', 'type' => 'submit', 'content' => 'Salvar')); ?>
-                        <?php echo form_button(array('class' => 'btn dark-blue', 'type' => 'button', 'content' => 'Voltar', 'onclick' => 'window.open(\''.base_url().'profissional\', \'_self\')')); ?>
-                        <?php echo form_close(); ?>
+                        <!-- /.col-lg-6 (nested) -->
                     </div>
-
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
             </div>
-
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
 
 </body>
 </html>

@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Produtos</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+            <a href="<?php echo site_url('produto/add'); ?>" class="btn btn-primary btn-sm">
+                Novo
+            </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Produtos</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,78 +23,61 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Produtos</h2>
-                <div class="box-icon">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Produtos
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo de Produto</th>
+                            <th>Preço</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($list_produtos as $produto): ?>
+                            <tr>
+                                <td><?php echo $produto->nome;?></td>
+                                <td class="center"><?php echo $produto->tipo_produto;?></td>
+                                <td class="center"><?php echo 'R$ '.$produto->preco;?></td>
+                                <td class="text-center">
+                                    <a class="btn btn-success btn-sm" href="javascript:;" onclick="janelaDetalhamentoProduto(<?= $produto->id ?>, <?= $produto->id ?>)">
+                                        <i class="glyphicon glyphicon-zoom-in"></i>
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('produto/view/'.$produto->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $produto->id ?>" data-nome="<?= $produto->nome ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
 
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-                <a href="<?php echo site_url('produto/add'); ?>" class="btn btn-primary btn-sm"> <i
-                        class="fa-icon-file"></i>Novo
-                </a>
+                <!-- /.panel-body -->
             </div>
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Tipo de Produto</th>
-                        <th>Preço</th>
-                        <th>Custo</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($list_produtos as $produto): ?>
-                    <tr>
-                        <td><?php echo $produto->nome;?></td>
-                        <td class="center"><?php echo $produto->tipo_produto;?></td>
-                        <td class="center"><?php echo 'R$ '.$produto->preco;?></td>
-                        <td class="center">
-                            <?php echo 'R$ '.$produto->custo;?>
-                        </td>
-                        <td class="center">
-                            <a class="btn btn-success" href="javascript:;" onclick="janelaDetalhamentoProduto(<?= $produto->id ?>)">
-                                <i class="halflings-icon white zoom-in"></i>
-                            </a>
-                            <a class="btn btn-info" href="<?php echo base_url('produto/view/'.$produto->id)?>">
-                                <i class="halflings-icon white edit"></i>
-                            </a>
-                            <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $produto->id ?>" data-nome="<?= $produto->nome ?>">
-                                <i class="halflings-icon white trash"></i>
-                            </a>
-                        </td>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-                    </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+</div>
+<!-- /#wrapper -->
 
 <div class="modal fade" id="modal_detalhamento" data-backdrop="static">
     <div class="modal-dialog">
@@ -115,11 +100,6 @@
                     </tr>
 
                     <tr>
-                        <td><strong>Custo:</strong></td>
-                        <td><label id="custo"></label></td>
-                    </tr>
-
-                    <tr>
                         <td><strong>Preço:</strong></td>
                         <td><label id="preco"></label></td>
                     </tr>
@@ -127,11 +107,6 @@
                     <tr>
                         <td><strong>Desconto Máximo:</strong></td>
                         <td><label id="desconto_maximo"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Desconto Promocional:</strong></td>
-                        <td><label id="desconto_promocional"></label></td>
                     </tr>
 
                 </table>
@@ -196,10 +171,8 @@
             console.log(data);
             $('#nome').text(data.nome);
             $('#tipo_produto').text(data.tipo_produto);
-            $('#custo').text('R$ '+data.custo);
             $('#preco').text('R$ '+data.preco);
             $('#desconto_maximo').text(data.desconto_maximo+'%');
-            $('#desconto_promocional').text(data.desconto_promocional+'%');
         }, 'json');
     }
 

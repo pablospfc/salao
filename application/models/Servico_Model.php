@@ -33,7 +33,7 @@ class servico_model extends CI_Model
     }
 
     function getById($id) {
-        $result = $this->db->query("SELECT id, nome, id_tipo_servico, format(tb_servico.custo,2,'de_DE') as custo, format(tb_servico.preco,2,'de_DE') as preco, desconto_maximo, desconto_promocional, duracao FROM {$this->table} WHERE id=".$id);
+        $result = $this->db->query("SELECT id, nome, id_tipo_servico, format(tb_servico.custo,2,'de_DE') as custo, format(tb_servico.preco,2,'de_DE') as preco, desconto_maximo, duracao FROM {$this->table} WHERE id=".$id);
         return $result;
     }
 
@@ -44,7 +44,6 @@ class servico_model extends CI_Model
                                            format(tb_servico.custo,2,'de_DE') as custo,
                                            format(tb_servico.preco,2,'de_DE') as preco,
                                            tb_servico.desconto_maximo as desconto_maximo,
-                                           tb_servico.desconto_promocional as desconto_promocional,
                                            tb_servico.duracao as duracao,
                                            tb_tipo_servico.nome as tipo_servico
                                      FROM {$this->table}

@@ -51,7 +51,6 @@ class Servico extends MY_Controller
         $data['custo'] =  $this->input->post('custo');
         $data['preco'] =  $this->input->post('preco');
         $data['desconto_maximo'] =  $this->input->post('desconto_maximo');
-        $data['desconto_promocional'] =  $this->input->post('desconto_promocional');
         $data['duracao'] =  $this->input->post('duracao');
         $this->servico->adding($data);
     }
@@ -76,7 +75,6 @@ class Servico extends MY_Controller
         $data['custo'] = $result->row(0)->custo;
         $data['preco'] = $result->row(0)->preco;
         $data['desconto_maximo'] = $result->row(0)->desconto_maximo;
-        $data['desconto_promocional'] = $result->row(0)->desconto_promocional;
         $data['duracao'] = $result->row(0)->duracao;
 
         $this->load->view('servico/view', $data);
@@ -94,7 +92,6 @@ class Servico extends MY_Controller
             $data['custo'] =  $this->input->post('custo');
             $data['preco'] =  $this->input->post('preco');
             $data['desconto_maximo'] =  $this->input->post('desconto_maximo');
-            $data['desconto_promocional'] =  $this->input->post('desconto_promocional');
             $data['duracao'] =  $this->input->post('duracao');
 
             if($this->servico->changing($id, $data)){
@@ -116,7 +113,6 @@ class Servico extends MY_Controller
             'custo' => $result->row(0)->custo,
             'preco' => $result->row(0)->preco,
             'desconto_maximo' => $result->row(0)->desconto_maximo,
-            'desconto_promocional' => $result->row(0)->desconto_promocional,
             'duracao' => $result->row(0)->duracao,
             'tipo_servico' => $result->row(0)->tipo_servico,
         );

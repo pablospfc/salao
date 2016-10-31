@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Serviços</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+            <a href="<?php echo site_url('servico/add'); ?>" class="btn btn-primary btn-sm">
+                Novo
+            </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Serviços</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,21 +23,16 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Serviços</h2>
-                <div class="box-icon">
-
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Serviços
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-                <a href="<?php echo site_url('servico/add'); ?>" class="btn btn-primary btn-sm"> <i
-                        class="fa-icon-file"></i>Novo
-                </a>
-            </div>
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr>
                         <th>Nome</th>
@@ -47,52 +44,44 @@
                     </thead>
                     <tbody>
                     <?php foreach($list_servicos as $servico): ?>
-                    <tr>
-                        <td><?php echo $servico->nome;?></td>
-                        <td class="center"><?php echo $servico->tipo_servico;?></td>
-                        <td class="center"><?php echo 'R$ '.$servico->preco;?></td>
-                        <td class="center">
-                            <?php echo 'R$ '.$servico->custo;?>
-                        </td>
-                        <td class="center">
-                            <a class="btn btn-success" href="javascript:;" onclick="janelaDetalhamentoServico(<?= $servico->id ?>)">
-                                <i class="halflings-icon white zoom-in"></i>
-                            </a>
-                            <a class="btn btn-info" href="<?php echo base_url('servico/view/'.$servico->id)?>">
-                                <i class="halflings-icon white edit"></i>
-                            </a>
-                            <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $servico->id ?>" data-nome="<?= $servico->nome ?>">
-                                <i class="halflings-icon white trash"></i>
-                            </a>
-                        </td>
+                        <tr>
+                            <td><?php echo $servico->nome;?></td>
+                            <td class="center"><?php echo $servico->tipo_servico;?></td>
+                            <td class="center"><?php echo 'R$ '.$servico->preco;?></td>
+                            <td class="center">
+                                <?php echo 'R$ '.$servico->custo;?>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-success btn-sm" href="javascript:;" onclick="janelaDetalhamentoServico(<?= $servico->id ?>, <?= $servico->id ?>)">
+                                    <i class="glyphicon glyphicon-zoom-in"></i>
+                                </a>
+                                <a class="btn btn-info btn-sm" href="<?php echo base_url('servico/view/'.$servico->id)?>">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $servico->id ?>" data-nome="<?= $servico->nome ?>">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
+                            </td>
 
-                    </tr>
+                        </tr>
                     <?php endforeach;?>
                     </tbody>
-                </table>
+                    </table>
+                    <!-- /.table-responsive -->
+
+                </div>
+                <!-- /.panel-body -->
             </div>
-        </div><!--/span-->
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+</div>
+<!-- /#wrapper -->
 
 <div class="modal fade" id="modal_detalhamento" data-backdrop="static">
     <div class="modal-dialog">
@@ -127,11 +116,6 @@
                     <tr>
                         <td><strong>Desconto Máximo:</strong></td>
                         <td><label id="desconto_maximo"></label></td>
-                    </tr>
-
-                    <tr>
-                        <td><strong>Desconto Promocional:</strong></td>
-                        <td><label id="desconto_promocional"></label></td>
                     </tr>
 
                     <tr>
@@ -204,7 +188,6 @@
             $('#custo').text('R$ '+data.custo);
             $('#preco').text('R$ '+data.preco);
             $('#desconto_maximo').text(data.desconto_maximo+'%');
-            $('#desconto_promocional').text(data.desconto_promocional+'%');
             $('#duracao').text(data.duracao+' minutos');
         }, 'json');
     }

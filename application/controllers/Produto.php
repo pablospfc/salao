@@ -48,10 +48,8 @@ class Produto extends MY_Controller
     function adding() {
         $data['nome'] = $this->input->post('nome');
         $data['id_tipo_produto'] = $this->input->post('id_tipo_produto');
-        $data['custo'] =  $this->input->post('custo');
         $data['preco'] =  $this->input->post('preco');
         $data['desconto_maximo'] =  $this->input->post('desconto_maximo');
-        $data['desconto_promocional'] =  $this->input->post('desconto_promocional');
         $this->produto->adding($data);
     }
 
@@ -72,10 +70,8 @@ class Produto extends MY_Controller
         $data['id'] = $result->row(0)->id;
         $data['nome'] = $result->row(0)->nome;
         $data['id_tipo_produto'] =  $result->row(0)->id_tipo_produto;
-        $data['custo'] = $result->row(0)->custo;
         $data['preco'] = $result->row(0)->preco;
         $data['desconto_maximo'] = $result->row(0)->desconto_maximo;
-        $data['desconto_promocional'] = $result->row(0)->desconto_promocional;
 
         $this->load->view('produto/view', $data);
     }
@@ -89,10 +85,8 @@ class Produto extends MY_Controller
 
             $data['nome'] = $this->input->post('nome');
             $data['id_tipo_produto'] = $this->input->post('id_tipo_produto');
-            $data['custo'] =  $this->input->post('custo');
             $data['preco'] =  $this->input->post('preco');
             $data['desconto_maximo'] =  $this->input->post('desconto_maximo');
-            $data['desconto_promocional'] =  $this->input->post('desconto_promocional');
 
             if($this->produto->changing($id, $data)){
                 $this->session->set_flashdata('update-ok','Alterado com sucesso!');
@@ -110,10 +104,8 @@ class Produto extends MY_Controller
         $array_produtos = array(
             'id' => $result->row(0)->id,
             'nome' => $result->row(0)->nome,
-            'custo' => $result->row(0)->custo,
             'preco' => $result->row(0)->preco,
             'desconto_maximo' => $result->row(0)->desconto_maximo,
-            'desconto_promocional' => $result->row(0)->desconto_promocional,
             'tipo_produto' => $result->row(0)->tipo_produto,
         );
 

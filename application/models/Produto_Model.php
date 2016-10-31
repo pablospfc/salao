@@ -23,7 +23,6 @@ class Produto_Model extends CI_Model
         $result = $this->db->query("SELECT 
                                            tb_produto.id as id,
                                            tb_produto.nome as nome,
-                                           format(tb_produto.custo,2,'de_DE') as custo,
                                            format(tb_produto.preco,2,'de_DE') as preco,
                                            tb_tipo_produto.nome as tipo_produto
                                      FROM {$this->table}
@@ -32,7 +31,7 @@ class Produto_Model extends CI_Model
     }
 
     function getById($id) {
-        $result = $this->db->query("SELECT id, nome, id_tipo_produto, format(tb_produto.custo,2,'de_DE') as custo, format(tb_produto.preco,2,'de_DE') as preco, desconto_maximo, desconto_promocional FROM {$this->table} WHERE id=".$id);
+        $result = $this->db->query("SELECT id, nome, id_tipo_produto, format(tb_produto.preco,2,'de_DE') as preco, desconto_maximo FROM {$this->table} WHERE id=".$id);
         return $result;
     }
 
@@ -40,10 +39,8 @@ class Produto_Model extends CI_Model
         $result  = $this->db->query("SELECT 
                                            tb_produto.id as id,
                                            tb_produto.nome as nome,
-                                           format(tb_produto.custo,2,'de_DE') as custo,
                                            format(tb_produto.preco,2,'de_DE') as preco,
                                            tb_produto.desconto_maximo as desconto_maximo,
-                                           tb_produto.desconto_promocional as desconto_promocional,
                                            tb_tipo_produto.nome as tipo_produto
                                      FROM {$this->table}
                                      INNER JOIN tb_tipo_produto ON tb_tipo_produto.id = tb_produto.id_tipo_produto

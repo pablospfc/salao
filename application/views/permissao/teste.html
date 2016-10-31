@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="http://localhost/salao/permissao/adding" id="form_permissao" class="form-horizontal" method="post"
+      accept-charset="utf-8">
+    <input type="hidden" name="id_perfil" value="1"><input type="hidden" id="metodosExcluidos"
+                                                           name="metodosExcluidos[]">
+    <div class="panel panel-default">
+        <div class="panel-heading">Gerenciamento de Clientes</div>
+        <ul class="list-group">
+            <li class="list-group-item">Remover Clientes
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="18" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Listar Clientes
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="5" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Clientes
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="16" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Cliente
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="17" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Produtos</div>
+        <ul class="list-group">
+            <li class="list-group-item">Listar Produtos
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="3" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Produtos
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="23" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Produto
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="25" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Produto
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="26" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Usuários</div>
+        <ul class="list-group">
+            <li class="list-group-item">Listar Usuários
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="43" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Usuários
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="44" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Usuário
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="45" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Usuário
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="46" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Atualizar Usuário
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="47" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Profissionais</div>
+        <ul class="list-group">
+            <li class="list-group-item">Cadastrar Profissional
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="19" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Profissional
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="21" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Profissional
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="22" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Listar Profissionais
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="6" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Serviços</div>
+        <ul class="list-group">
+            <li class="list-group-item">Listar Serviços
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="1" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Serviços
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="9" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Serviços
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="11" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Serviços
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="13" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Atualizar Serviços
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="14" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Fornecedores</div>
+        <ul class="list-group">
+            <li class="list-group-item">Visualizar Fornecedor
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="29" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Atualizar Fornecedor
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="62" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Fornecedor
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="30" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Listar Fornecedores
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="2" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Fornecedor
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="27" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Cartões</div>
+        <ul class="list-group">
+            <li class="list-group-item">Cadastrar Cartão
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="31" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Cartão
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="33" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Cartão
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="34" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Atualizar Cartão
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="59" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Listar Cartões
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="7" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Agenda</div>
+        <ul class="list-group">
+            <li class="list-group-item">Visualizar Agenda
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="4" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Comandas e Vendas</div>
+        <ul class="list-group">
+            <li class="list-group-item">Listar Vendas
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="8" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamentod e Perfis</div>
+        <ul class="list-group">
+            <li class="list-group-item">Visualizar Perfil
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="40" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Remover Perfil
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="41" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Atualizar Perfil
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="42" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Listar Perfis
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="37" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Perfil
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="38" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Permissões</div>
+        <ul class="list-group">
+            <li class="list-group-item">Listar Permissões
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="48" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Cadastrar Permissões
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="51" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Permissão
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="39" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Empresa</div>
+        <ul class="list-group">
+            <li class="list-group-item">Visualizar Empresa
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="10" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Vizualizar Informações da Empresa
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="60" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+        <div class="panel-heading">Gerenciamento de Estoque</div>
+        <ul class="list-group">
+            <li class="list-group-item">Atualizar Estoque
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="63" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualiza Estoque
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="52" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Lançar Movimentação
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="53" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Extrato de Estoque
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="54" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+            <li class="list-group-item">Visualizar Estoque
+                <div class="material-switch pull-right"><input id="someSwitchOptionDefault" name="metodos[]"
+                                                               type="checkbox" value="58" checked><label
+                        for="someSwitchOptionDefault" class="label-default"></label></div>
+            </li>
+        </ul>
+    </div>
+    <!--                    <div class="panel panel-default">-->
+    <!--                        <!-- Default panel contents -->-->
+    <!--                        <div class="panel-heading">Material Design Switch Demos</div>-->
+    <!---->
+    <!--                        <!-- List group -->-->
+    <!--                        <ul class="list-group">-->
+    <!--                            <li class="list-group-item">-->
+    <!--                                Bootstrap Switch Default-->
+    <!--                                <div class="material-switch pull-right">-->
+    <!--                                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>-->
+    <!--                                    <label for="someSwitchOptionDefault" class="label-default"></label>-->
+    <!--                                </div>-->
+    <!--                            </li>-->
+    <!--                        </ul>-->
+    <!--                    </div>-->
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary">
+                Salvar
+            </button>
+            <button type="reset" class="btn btn-default">
+                Limpar
+            </button>
+        </div>
+    </div>
+</form>
+
+
+</body>
+</html>

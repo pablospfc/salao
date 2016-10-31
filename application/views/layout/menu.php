@@ -32,6 +32,12 @@
 				<a href="<?php echo site_url('movimentacao'); ?>"><i class="fa fa-cubes fa-fw"></i> Estoque</a>
 			</li>
 			<li>
+				<a href="<?php echo site_url('perfil'); ?>"><i class="fa fa-user fa-fw"></i> Perfis</a>
+			</li>
+			<li>
+				<a href="<?php echo site_url('usuario'); ?>"><i class="fa fa-user fa-fw"></i> Usuarios</a>
+			</li>
+			<li>
 				<a href="<?php echo site_url('empresa/view/'.$this->session->userdata('id_empresa')); ?>"><i class="fa fa-cubes fa-fw"></i> Empresa</a>
 			</li>
 		</ul>
