@@ -61,7 +61,7 @@
                                 <input class="form-control" placeholder="Login" name="login" type="text" autofocus>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Senha" name="password" type="password">
+                                <input class="form-control" placeholder="Senha" name="senha" type="password">
                             </div>
                             <div class="checkbox">
                                 <label>
