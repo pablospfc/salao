@@ -20,7 +20,7 @@ class LoginService extends CI_Controller
     function index()
     {
         $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters('<div class="alert alert-error fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>', '</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>', '</strong></div>');
         $this->form_validation->set_rules('login', 'login', 'trim|required', array('required' => 'O campo %s é requerido.'));
         $this->form_validation->set_rules('senha', 'senha', 'required|trim|md5|callback_check_dados', array('required' => 'O campo %s é requerido.'));
 

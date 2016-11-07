@@ -1,15 +1,17 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Usuários</h3>
+        </div>
 
-<div id="content" class="span10">
+        <div class="col-lg-5">
+            <a href="<?php echo site_url('usuario/add'); ?>" class="btn btn-primary btn-sm">
+                Novo
+            </a>
+            <br><br>
+        </div>
+    </div>
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="index.html">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Usuários</a></li>
-    </ul>
     <?php
 
     if( $this->session->flashdata('insert-ok')!="" ){
@@ -21,79 +23,66 @@
     }
 
     ?>
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Usuários</h2>
-                <div class="box-icon">
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Usuários
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Perfil</th>
+                            <th>Login</th>
+                            <th>Ativo</th>
+                            <th>Data de Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach($list_usuarios as $usuario): ?>
+                            <tr>
+                                <td><?php echo $usuario->nome;?></td>
+                                <td class="center"><?php echo $usuario->perfil;?></td>
+                                <td class="center"><?php echo $usuario->login;?></td>
+                                <td class="center">
+                                    <?php echo $usuario->situacao;?>
+                                </td>
+                                <td class="center">
+                                    <?php echo $usuario->data_cadastro;?>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('usuario/view/'.$usuario->id)?>">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm confirma_exclusao" href="#" data-id="<?= $usuario->id ?>" data-nome="<?= $usuario->nome ?>">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        <?php endforeach;?>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
 
                 </div>
-            </div><br>
-            <div style="padding-left:900px;">
-                <a href="<?php echo site_url('usuario/add'); ?>" class="btn btn-primary btn-sm"> <i
-                        class="fa-icon-file"></i>Novo
-                </a>
+                <!-- /.panel-body -->
             </div>
-            <div class="box-content">
-                <table class="table table-striped table-bordered bootstrap-datatable datatable">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Perfil</th>
-                        <th>Login</th>
-                        <th>Ativo</th>
-                        <th>Data de Cadastro</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($list_usuarios as $usuario): ?>
-                        <tr>
-                            <td><?php echo $usuario->nome;?></td>
-                            <td class="center"><?php echo $usuario->perfil;?></td>
-                            <td class="center"><?php echo $usuario->login;?></td>
-                            <td class="center">
-                                <?php echo $usuario->situacao;?>
-                            </td>
-                            <td class="center">
-                                <?php echo $usuario->data_cadastro;?>
-                            </td>
-                            <td class="center">
-                                <a class="btn btn-info" href="<?php echo base_url('usuario/view/'.$usuario->id)?>">
-                                    <i class="halflings-icon white edit"></i>
-                                </a>
-                                <a class="btn btn-danger confirma_exclusao" href="#" data-id="<?= $usuario->id ?>" data-nome="<?= $usuario->nome ?>">
-                                    <i class="halflings-icon white trash"></i>
-                                </a>
-                            </td>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
-                        </tr>
-                    <?php endforeach;?>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+</div>
+<!-- /#wrapper -->
 
 <div class="modal fade" id="modal_confirmation">
     <div class="modal-dialog">
@@ -103,7 +92,7 @@
                 <h4 class="modal-title">Confirmação de Exclusão</h4>
             </div>
             <div class="modal-body">
-                <p>Deseja realmente excluir o cliente <strong><span id="nome_exclusao"></span></strong>?</p>
+                <p>Deseja realmente excluir o usuário <strong><span id="nome_exclusao"></span></strong>?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
@@ -139,7 +128,7 @@
             document.location.href = base_url + "usuario/del/"+id;
         });
     });
-    
+
 </script>
 </body>
 </html>

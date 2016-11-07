@@ -27,7 +27,7 @@ class Usuario extends MY_Controller
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
 
-        $this->form_validation->set_error_delimiters('<div class="alert alert-error fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
         $this->form_validation->set_rules('login', 'login', 'trim|required|max_length[15]|is_unique[tb_usuario.login]',array('is_unique' => 'Já existe um usuário cadastrado com esse login.'));
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]|is_unique[tb_usuario.email]',array('is_unique' => 'Já existe um usuário cadastrado com esse email.'));
@@ -81,7 +81,7 @@ class Usuario extends MY_Controller
 
     public function changing() {
         $id = (int) $this->input->post('id');
-        $this->form_validation->set_error_delimiters('<div class="alert alert-error fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
         $this->form_validation->set_rules('senha', 'senha',  'trim|min_length[6]|md5',array('min_length' => 'O campo %s deve ter pelo menos 6 caracteres.'));

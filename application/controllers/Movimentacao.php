@@ -41,7 +41,7 @@ class Movimentacao extends MY_Controller
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
 
-        $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('id_produto', 'id_produto', 'required');
         $this->form_validation->set_rules('data_movimentacao', 'data_movimentacao', 'required');
 
@@ -125,7 +125,7 @@ class Movimentacao extends MY_Controller
 
     function changing() {
         $id = (int) $this->input->post('id');
-        $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('id_produto', 'id_produto', 'required');
         $this->form_validation->set_rules('data_movimentacao', 'data_movimentacao', 'required');
 

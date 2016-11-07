@@ -38,7 +38,7 @@ class Permissao extends MY_Controller
 
         $idPerfil = $this->input->post('id_perfil');
 
-        $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('id_perfil', 'id_perfil', 'required');
 
         if($this->form_validation->run()){

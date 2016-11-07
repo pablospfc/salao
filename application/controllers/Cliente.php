@@ -33,7 +33,7 @@ class Cliente extends MY_Controller
         $this->load->view('layout/header');
         $this->load->view('layout/menu');
 
-        $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
 
@@ -101,7 +101,7 @@ class Cliente extends MY_Controller
 
     function changing() {
         $id = (int) $this->input->post('id');
-        $this->form_validation->set_error_delimiters('<div class="alert red fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger fade in"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>','</strong></div>');
         $this->form_validation->set_rules('nome', 'nome', 'required|max_length[50]');
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
 
