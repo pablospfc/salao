@@ -97,30 +97,50 @@
 //
 //                    echo '</div>';
 
+
+
+
+                    echo validation_errors();
+                    $attributes = array('id'=>'form_permissao','class' => 'form-horizontal');
+                    echo form_open('permissao/adding',$attributes);
+                    echo '<input type="hidden" name="id_perfil" value="'.$idPerfil.'">';
+                    echo '<input type="hidden" id="metodosExcluidos" name="metodosExcluidos[]">';
+
+                    foreach ($list_permissoes as $modulos) {
+                        echo $modulos['modulo']."</br>";
+                        foreach ($modulos['metodos'] as $metodo) {
+                            echo $metodo['metodo'];
+                            $checked = ($metodo['checked'] == 1) ? "checked" : "";
+
+                            echo '<input type="checkbox" id="metodo" name="metodos[]" value="'.$metodo['id'].'" '.$checked."></br>";
+                        }
+                        echo "</br>";
+                    }
+
                     ?>
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">Material Design Switch Demos</div>
-
-                        <!-- List group -->
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                               Teste1
-                                <div class="material-switch pull-right">
-                                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
-                                    <label for="someSwitchOptionDefault" class="label-default"></label>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                Teste2
-                                <div class="material-switch pull-right">
-                                    <input id="someSwitchOptionDefault" name="someSwitchOption002" type="checkbox"/>
-                                    <label for="someSwitchOptionDefault" class="label-default"></label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+<!--                    <div class="panel panel-default">-->
+<!--                        <!-- Default panel contents -->
+<!--                        <div class="panel-heading">Material Design Switch Demos</div>-->
+<!---->
+<!--                        <!-- List group -->
+<!--                        <ul class="list-group">-->
+<!--                            <li class="list-group-item">-->
+<!--                               Teste1-->
+<!--                                <div class="material-switch pull-right">-->
+<!--                                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>-->
+<!--                                    <label for="someSwitchOptionDefault" class="label-default"></label>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item">-->
+<!--                                Teste2-->
+<!--                                <div class="material-switch pull-right">-->
+<!--                                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>-->
+<!--                                    <label for="someSwitchOptionDefault" class="label-default"></label>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
 
                 </div>
 
@@ -154,7 +174,7 @@
 
 <script>
 
-    $("body").on("click", "#someSwitchOptionDefault", function() {
+    $("body").on("click", "#metodo", function() {
         if ($(this).is(":checked")) {
             //$("#metodosExcluidos")val($(this).val());
             //alert($(this).val());

@@ -116,6 +116,11 @@ $(function(){
     }
 
     // Prepares the modal window according to data passed
+
+    function setSelectValue (id, val) {
+        document.getElementById(id).value = val;
+    }
+
     function modal(data) {
         // Set modal title
         $('.modal-title').html(data.title);
@@ -133,27 +138,44 @@ $(function(){
             time = time.charAt(0) === '0' ? time.slice(1) : time;
         }
 
+        var profissional_id = data.event ? data.event.id_profissional : '';
+        var cliente_id = data.event ? data.event.id_cliente : '';
+
         $.getJSON(base_url+'agenda/getClientes', function(data){
             var options = "<option value=''></option>";
+            var valor;
             for (var x = 0; x < data.length; x++) {
                 options += '<option value="' + data[x]['id'] + '">' + data[x]['nome'] + '</option>';
+
+                if (data[x]['id'] == cliente_id) {
+                    valor = cliente_id;
+                }
             }
             $('#clientes').html(options);
+            document.getElementById("clientes").value = valor;
 
         });
 
-
         $.getJSON(base_url+'agenda/getProfissionais', function(data){
             var options = "<option value=''></option>";
+            var valor;
             for (var x = 0; x < data.length; x++) {
                 options += '<option value="' + data[x]['id'] + '">' + data[x]['nome'] + '</option>';
+
+                if (data[x]['id'] == profissional_id) {
+                    valor = profissional_id;
+                }
             }
+
             $('#profissionais').html(options);
+
+            document.getElementById("profissionais").value = valor;
 
         });
         
         $('#time').val(time);
         $('#description').val(data.event ? data.event.description : '');
+        //console.log(data.event.id_cliente);
         //$('#clientes').val(data.event ? data.event.id_cliente : '');
         // $('#profissionais').val(data.event ? data.event.id_profissional : '');
         $('#color').val(data.event ? data.event.color : '#3a87ad');

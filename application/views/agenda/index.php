@@ -1,4 +1,3 @@
-
 <style>
     .fc th {
         padding: 10px 0px;
@@ -37,57 +36,40 @@
     }
 </style>
 
-<div id="content" class="span10">
 
-
-    <ul class="breadcrumb">
-        <li>
-            <i class="icon-home"></i>
-            <a href="#">Home</a>
-            <i class="icon-angle-right"></i>
-        </li>
-        <li><a href="#">Fornecedores</a></li>
-    </ul>
-
-    <div class="row-fluid sortable">
-        <div class="box span12">
-            <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Cadastro de Fornecedores</h2>
-            </div>
-            <div class="box-content">
-                <div class="container">
-                    <div class="row clearfix">
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Gerenciamento de Agenda</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Agendamento
+                </div>
+                <div class="panel-body">
+                    <div class="row">
                         <div class="col-md-12 column">
-                            <div id='calendar'></div>
+
+                            <div id="calendar"></div>
+
                         </div>
+                        <!-- /.col-lg-6 (nested) -->
                     </div>
+                    <!-- /.row (nested) -->
                 </div>
-                </div>
-
+                <!-- /.panel-body -->
             </div>
-
-        </div><!--/span-->
-
-    </div><!--/row-->
-
-
-
-</div><!--/.fluid-container-->
-
-
-</div><!--/#content.span10-->
-</div><!--/fluid-row-->
-
-<div class="clearfix"></div>
-
-<footer>
-
-    <p>
-        <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
-
-    </p>
-
-</footer>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
 
 <div class="modal fade">
     <div class="modal-dialog">
@@ -98,58 +80,48 @@
             </div>
             <div class="modal-body">
                 <div class="error"></div>
-                <form class="form-horizontal" id="crud-form">
-                    <div class="control-group">
-                        <label class="control-label" for="clientes">Cliente:</label>
-                        <div class="controls">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="clientes">Cliente:</label>
                             <select name="id_cliente" id="clientes" class="form-control">
                             </select>
-                        </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label" for="profissionais">Profissionais:</label>
-                        <div class="controls">
+                    <div class=form-group">
+                        <label for="profissionais">Profissionais:</label>
                             <select name="id_profissional" id="profissionais" class="form-control">
                             </select>
-                        </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="col-md-4 control-label" for="time">Hora</label>
-                        <div class="controls">
-                        <div class="col-md-4 input-append bootstrap-timepicker">
+                    <div class="form-group">
+                        <label for="time">Hora</label>
+                        <div class="input-append bootstrap-timepicker">
                             <input id="time" name="time" type="text" class="form-control input-md" />
                         </div>
-                        </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="col-md-4 control-label" for="description">Description</label>
-                        <div class="controls">
-                        <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="description">Descrição</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
-                        </div>
-                        </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="col-md-4 control-label" for="color">Color</label>
-                        <div class="col-md-4">
-                            <div class="controls">
+                    <div class="form-group">
+                        <label for="color">Cor</label>
                             <input id="color" name="color" type="text" class="form-control input-md" readonly="readonly" />
                             <span class="help-block">Click to pick a color</span>
-                            </div>
                         </div>
                     </div>
                 </form>
-            </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
+            </div>
+
         </div>
     </div>
     </div>
+
 
 </body>
 </html>

@@ -29,6 +29,17 @@
     <!-- Custom Fonts -->
     <link href="<?php echo base_url('includes/vendor/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
 
+<!--    <link href="--><?php //echo base_url('includes/vendor/fullcalendar/css/fullcalendar.css'); ?><!--" rel="stylesheet">-->
+<!---->
+<!--    <link href="--><?php //echo base_url('includes/vendor/fullcalendar/css/fullcalendar.print.css'); ?><!--" rel="stylesheet">-->
+
+    <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css' rel='stylesheet' />
+    <link href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+    <link href="<?php echo base_url('includes/vendor/fullcalendar/css/bootstrap-colorpicker.min.css');?>" rel="stylesheet" type="text/css">
+
+    <link href="<?php echo base_url('includes/vendor/fullcalendar/css/bootstrap-timepicker.min.css');?>" rel="stylesheet" type="text/css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,6 +52,14 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url('includes/vendor/bootstrap/js/bootstrap.min.js');?>"></script>
+
+<!--    <script src="--><?php //echo base_url('includes/vendor/fullcalendar/js/moment.min.js');?><!--"></script>-->
+<!---->
+<!--    <script src="--><?php //echo base_url('includes/vendor/fullcalendar/js/fullcalendar.min.js');?><!--"></script>-->
+
+    <script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js'></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?php echo base_url('includes/vendor/metisMenu/metisMenu.min.js');?>"></script>
@@ -55,7 +74,12 @@
 
     <script src="<?php echo base_url('includes/js/jquery.formula.js');?>"></script>
 
-    <script src="<?php echo base_url('includes/js/main.js');?>"></script>
+    <script src="<?php echo base_url('includes/vendor/fullcalendar/js/bootstrap-colorpicker.min.js');?>"></script>
+
+    <script src="<?php echo base_url('includes/vendor/fullcalendar/js/bootstrap-timepicker.min.js');?>"></script>
+
+   <script src="<?php echo base_url('includes/js/main.js');?>"></script>
+
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
