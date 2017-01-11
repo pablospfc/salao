@@ -37,11 +37,19 @@ class Venda extends MY_Controller
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[100]');
 
         if( $this->form_validation->run()==FALSE ){
-            $estados = $this->estado->getEstados();
-            foreach($estados as $arr){
-                $data['list_estados'][$arr->id] = $arr->nome;
+            $clientes = $this->cliente->getAll();
+            foreach($clientes as $arr){
+                $data['list_clientes'][$arr->id] = $arr->nome;
             }
-            $this->load->view('cliente/add',$data);
+            $produtos = $this->produto->getAll();
+            foreach($produtos as $arr){
+                $data['list_produtos'][$arr->id] = $arr->nome;
+            }
+            $servicos = $this->servico->getAll();
+            foreach($servicos as $arr){
+                $data['list_servicos'][$arr->id] = $arr->nome;
+            }
+            $this->load->view('venda/add', $data);          
         }else{
             $this->adding();
             $this->session->set_flashdata('insert-ok','Venda registrada com sucesso!');

@@ -19,7 +19,7 @@ class Cliente_Model extends CI_Model
         return $result;
     }
 
-    function getAll() {
+    public function getAll() {
         $result = $this->db->query("SELECT * FROM tb_cliente");
         return $result->result();
     }

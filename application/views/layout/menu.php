@@ -26,7 +26,7 @@
 				<a href="<?php echo site_url('agenda'); ?>"><i class="fa fa-calendar fa-fw"></i> Agenda</a>
 			</li>
 			<li>
-				<a href="<?php echo site_url('venda'); ?>"><i class="fa fa-shopping-cart fa-fw"></i> Vendas</a>
+				<a href="<?php echo site_url('venda/add'); ?>"><i class="fa fa-shopping-cart fa-fw"></i> Vendas</a>
 			</li>
 			<li>
 				<a href="<?php echo site_url('movimentacao'); ?>"><i class="fa fa-cubes fa-fw"></i> Estoque</a>
