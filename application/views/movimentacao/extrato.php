@@ -127,7 +127,7 @@
 
         $('#btn_excluir').click(function(){
             var id = $('#modal_confirmation').data('id');
-            document.location.href = base_url + "cliente/del/"+id;
+            document.location.href = base_url + "movimentacao/del/"+id;
         });
     });
 

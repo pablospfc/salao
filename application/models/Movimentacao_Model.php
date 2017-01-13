@@ -50,6 +50,7 @@ class Movimentacao_Model extends CI_Model
         return $this->db->query("SELECT
                                     tb_movimentacao_produto.id,
                                     tb_produto.nome AS produto,
+                                    tb_produto.id AS id_produto,
                                     tb_tipo_movimentacao_produto.id AS id_tipo_movimentacao_produto,
                                     tb_tipo_movimentacao_produto.nome AS tipo_movimentacao,
                                     DATE_FORMAT(tb_movimentacao_produto.data,'%d/%m/%Y') AS data,
@@ -77,6 +78,7 @@ class Movimentacao_Model extends CI_Model
         $query = "SELECT 
                         tb_movimentacao_produto.id,
                         tb_produto.nome AS produto,
+                        tb_produto.id AS id_produto,
                         sum(tb_movimentacao_produto.quantidade) as quantidade,
                         FORMAT(round(sum(custo_total)/sum(tb_movimentacao_produto.quantidade),2),2, 'de_DE') as custo_medio,
                         format(sum(custo_total),2,'de_DE') as total

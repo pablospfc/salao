@@ -52,7 +52,7 @@
                                     <?php echo "R$ ".$movimentacao->total;?>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('movimentacao/extrato/'.$movimentacao->id)?>">
+                                    <a class="btn btn-info btn-sm" href="<?php echo base_url('movimentacao/extrato/'.$movimentacao->id_produto)?>">
                                         <i class="glyphicon glyphicon-list"></i>
                                     </a>
                                 </td>

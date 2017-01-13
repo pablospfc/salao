@@ -173,7 +173,8 @@ class Fornecedor extends MY_Controller
             'inscricao_municipal' => $result->row(0)->inscricao_municipal
         );
 
-        error_log(var_export($array_fornecedores, true), 3,'C:/xampp/htdocs/salao/log.log');
+        //error_log(var_export($result, true), 3,'/var/www/html/salao/log.log');
+
 
         echo json_encode($array_fornecedores);
 
