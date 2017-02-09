@@ -45,7 +45,7 @@ class Agenda extends MY_Controller
         $data['description'] =  $this->input->post('description');
         $data['date'] =  $this->input->post('date');
 
-        error_log(var_export($_POST, true), 3,'C:/xampp/htdocs/salao/log.log');
+        //error_log(var_export($_POST, true), 3,'C:/xampp/htdocs/salao/log.log');
         $result=$this->agenda->addEvent($data);
         echo $result;
     }
