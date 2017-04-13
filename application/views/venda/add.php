@@ -32,7 +32,51 @@
                                         ?>
                                     </select>
                                 </div>
-                                
+
+                                <div class="form-group">
+                                    <label>Profissional:</label>
+                                    <select name="id_profissional" id="id_profissional" class="form-control">
+                                        <option value="" selected></option>
+                                        <?php
+
+                                        foreach($list_profissionais as $profissional_id => $profissional_nome){
+                                            echo '<option value="'.$profissional_id.'">'.$profissional_nome.'</option>';
+                                        }
+
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline"><input type="radio" name="optradio">Produto</label>
+                                    <label class="radio-inline"><input type="radio" name="optradio">Serviço</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>Produto:</label>
+                                    <select name="id_produto" id="id_produto" class="form-control">
+                                        <option value="" selected></option>
+                                        <?php
+
+                                        foreach($list_produtos as $produto_id => $produto_nome){
+                                            echo '<option value="'.$produto_id.'">'.$produto_nome.'</option>';
+                                        }
+
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Serviços:</label>
+                                    <select name="id_profissional" id="id_profissional" class="form-control">
+                                        <option value="" selected></option>
+                                        <?php
+
+                                        foreach($list_profissionais as $profissional_id => $profissional_nome){
+                                            echo '<option value="'.$profissional_id.'">'.$profissional_nome.'</option>';
+                                        }
+
+                                        ?>
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
                                     <label>Data de Nascimento:</label>

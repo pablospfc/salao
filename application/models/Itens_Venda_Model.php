@@ -3,12 +3,12 @@
 /**
  * Created by PhpStorm.
  * User: claud
- * Date: 26/11/2016
- * Time: 21:54
+ * Date: 27/02/2017
+ * Time: 16:18
  */
-class Venda_Model extends CI_Model
+class Itens_Venda_Model extends CI_Model
 {
-    private $table = "tb_venda";
+    private $table = "tb_itens_venda";
 
     function __construct(){
         parent::__construct();
@@ -17,6 +17,6 @@ class Venda_Model extends CI_Model
     function adding($data){
         $result = $this->db->insert($this->table, $data);
         return $result;
-    }  
+    }
 
 }
